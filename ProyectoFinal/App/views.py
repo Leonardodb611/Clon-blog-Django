@@ -8,7 +8,7 @@ import random
 
 
 def inicio(request):
-    return render (request, "App/inicio.html")
+    return render (request, "App/inicio2.html")
 
 
 
