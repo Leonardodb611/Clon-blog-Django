@@ -25,7 +25,7 @@ Se requiere
 
 Ejecutamos la línea de comando 
 
--	Pip install -r requeriments.txt
+-	Pip install -r requirements.txt
 
 Una vez instalado requerimients.txt se ejecutará la siguiente línea de comando
 
