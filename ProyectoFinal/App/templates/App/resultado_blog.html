@@ -1,0 +1,56 @@
+{% extends 'App/padre.html' %}
+
+
+
+{% block cambiante %}
+
+
+<p>estas buscando</p>
+
+<div>
+{% if blogs %}
+
+    <p>blogs encontrados: {{blogs|length}}</p>
+
+    
+    
+        
+        {% for blog in blogs %}
+
+        <article style="border-style: solid; border-width: 1px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%;">
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <h1 class="fw-bolder mb-1">{{blog.titulo}}</h1>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">Posteado: {{blog.creacion}}</div>
+                <div class="text-muted fst-italic mb-2">Escrito por: {{blog.creador}}</div>
+                <!-- Post categories-->
+            </header>
+            <!-- Preview image figure-->
+            <!-- Post content-->
+            <section class="mb-5">
+                <p class="fs-5 mb-4" style="overflow-wrap: break-word; margin-left: 10%; margin-right: 10%;">{{blog.contenido}}</p>
+            
+            </section>
+        </article>
+     
+        {% endfor %}
+    
+    
+   
+
+{% else %}
+
+    <p>no hay coincidencias</p>
+
+    
+{% endif %}
+</div> 
+
+<a class="navbar-brand" href="{% url 'Busqueda'%}">Volver a buscar</a>
+    
+{% endblock cambiante %}
+
+
+

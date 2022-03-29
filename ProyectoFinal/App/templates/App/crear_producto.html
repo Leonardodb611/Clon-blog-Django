@@ -1,0 +1,37 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+<p><h3>CREAR NUEVO PRODUCTO</h3></p>
+
+    
+{% if miProducto.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+
+     <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
+          <!-- Post header-->
+          <table>
+             
+               <p> Producto: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.producto }}  </p>
+               <p> Categoria: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.categoria }}  </p>
+               <p> Precio: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.precio }}  </p>
+               
+           
+        </table>
+     
+     
+        <input type="submit", value="Enviar">
+      </article>
+
+</form>
+    
+{% endblock cambiante %}
+
