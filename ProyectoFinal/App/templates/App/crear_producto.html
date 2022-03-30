@@ -19,10 +19,11 @@
      <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
           <!-- Post header-->
           <table>
-             
-               <p> Producto: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.producto }}  </p>
-               <p> Categoria: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.categoria }}  </p>
-               <p> Precio: <input style="border-radius: 10px; text-align: center;" type="{{ miProducto.precio }}  </p>
+
+               <p> Producto: <input style="border-radius: 10px; text-align: center;" type="text" name="producto" pattern="[A-Za-z]{1,15}"></p>
+               <p> Categoria: <input  style="border-radius: 10px; text-align: center;" type="text" name="categoria" pattern="[A-Za-z]{1,15}"></p>
+               <p> Precio: <input  style="border-radius: 10px; text-align: center;" type="number" name="precio"></p>
+               
                
            
         </table>
