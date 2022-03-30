@@ -19,7 +19,7 @@ def Crear_Blog(request):
 
        miFormulario1 = CrearBlog(request.POST)
        print(miFormulario1)
-       if miFormulario1.is_valid:
+       if miFormulario1.is_valid():
            informacion = miFormulario1.cleaned_data
            blog = Blog(titulo=informacion['titulo'],creador=informacion['creador'],contenido=informacion['contenido'])
            blog.save()
@@ -37,7 +37,7 @@ def crear_Producto(request):
     if request.method == "POST":
         miProducto = Producto(request.POST)
         print(miProducto)
-        if miProducto.is_valid:
+        if miProducto.is_valid():
             informacion = miProducto.cleaned_data
             producto = Productos(producto=informacion['producto'],categoria=informacion['categoria'],precio=informacion['precio'])
             producto.save()
@@ -57,7 +57,7 @@ def usuarioFormulario(request):
 
         print(miFormulario)
 
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
 
                 informacion = miFormulario.cleaned_data
 
@@ -148,7 +148,7 @@ def busquedaproducto(request):
 def random_blog(request):
 
 
-    rblog= list(Blog.objects.all())
+    rblog = list(Blog.objects.all())
 
     if len(rblog) > 3:
         
