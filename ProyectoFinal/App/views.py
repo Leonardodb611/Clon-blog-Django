@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from App.forms import *
 from App.models import *
 import random
-
+from Applogin.views import *
 # Create your views here.
 
 
