@@ -4,6 +4,7 @@ from App.forms import *
 from App.models import *
 import random
 from Applogin.views import *
+from django.contrib.auth.models import User
 # Create your views here.
 
 
