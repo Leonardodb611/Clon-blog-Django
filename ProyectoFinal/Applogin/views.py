@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 
 
+
 # Create your views here.
 def register(request):
     if request.method == "POST":
@@ -54,6 +55,10 @@ def login_request (request):
     form = AuthenticationForm()
 
     return render(request, "Applogin/login.html", {"form":form})
+
+
+
+
 
 
 
