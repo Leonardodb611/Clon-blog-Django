@@ -28,6 +28,7 @@
                         <a class="navbar-brand" href="{% url 'Nuevo'%}">Crear Producto</a>
                         <a class="navbar-brand" href="{% url 'Formulario'%}">Nuevo usuario</a>
                         <a class="navbar-brand" href="{% url 'Busqueda'%}">Busqueda</a>
+
                         
                         {% if not request.user.is_authenticated %}
                         <a class="navbar-brand" href="{% url 'register'%}">registro</a>
@@ -45,7 +46,8 @@
 
                         {% else %}
                             <div style="padding-top: 15px;">
-                            <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; ">{{request.user.username}}</p>
+                            <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; ">{{request.user.username}} | <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'logout'%}">LOGOUT</a></p>
+                            
                             </div>
                         {% endif %}
                         </center>
