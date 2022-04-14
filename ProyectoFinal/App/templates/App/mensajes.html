@@ -1,0 +1,85 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+<P><h3>Bienvenido a mi pagina!</h3></P>
+<div>
+    {% if miFormulario.errors %}
+     <p style="color: red"> Hay problemas con los datos cargados</p>
+    {% endif %}
+        
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        
+            
+            
+        <p>Nombre: <input style="border-radius: 10px; text-align: center;" type="text" name="remitente" pattern="[A-Za-z]{1,15}"></p>
+        <p>Apellido: <input style="border-radius: 10px; text-align: center;" type="text" name="destinatario" pattern="[A-Za-z]{1,15}"></p>
+        <p>Dni: <input style="border-radius: 10px; text-align: center;" type="text" name="contenido"></p>
+         
+          
+
+           
+        
+
+        <input type="submit" value="Cargar curso">
+    </form>
+
+</div>
+
+
+
+{% if request.user.is_authenticated%}
+
+
+    <div style="text-align: center;" >
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th >Nombre</th>
+                    <th >destinatario</th>
+                    <th >Dni</th>
+                    
+                </tr>
+            </thead>
+
+            
+           
+                
+
+            <tbody>
+                <tr>
+                {% for x in cont_familia %}
+
+                <td>{{x.remitente}}</td>
+                <td>{{x.destinatario}}</td>
+                <td>{{x.contenido}}</td>
+                
+            </tr>
+            {% endfor %}
+            
+            {{hola.remitente}}
+
+            {{hola.destinatario}}
+            {{hola.contenido}}
+                
+                
+            </tbody>
+
+{% else %}
+<p>no hay mensajes</p>
+
+{% endif %}
+
+        </table>
+    </div>
+
+
+
+    
+{% endblock cambiante %}

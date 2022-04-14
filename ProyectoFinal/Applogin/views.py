@@ -31,6 +31,9 @@ def register(request):
 
 def login_request (request):
 
+    error = "datos erroneos"
+    
+
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
 
@@ -46,11 +49,11 @@ def login_request (request):
                 return redirect("/")
 
             else:
-                return render(request, "Applogin/gracias.html", {"mensaje":"error"})
+                return render(request, "Applogin/login.html", {"error":form})
 
         else:
 
-            return render(request, "Applogin/gracias.html", {"mensaje":"error"})
+            return render(request, "Applogin/login.html", {"error":form})
 
     form = AuthenticationForm()
 

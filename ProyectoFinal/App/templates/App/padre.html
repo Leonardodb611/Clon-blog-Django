@@ -47,6 +47,7 @@
                         {% else %}
                             <div style="padding-top: 15px;">
                             <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; ">{{request.user.username}} | <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'logout'%}">LOGOUT</a></p>
+                            <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'mensajeria'%}">Mensajes</a>
                             
                             </div>
                         {% endif %}

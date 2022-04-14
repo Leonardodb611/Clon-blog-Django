@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import  User
 
 # Create your models here.
 class Usuario(models.Model):
@@ -35,4 +36,13 @@ class Blog(models.Model):
     def __str__(self):
 
         return f"{self.titulo}"
+    
+class Mensajerias(models.Model):
+    
+    remitente = models.CharField(max_length=40)
+    destinatario = models.ForeignKey(User, to_field="username", on_delete=models.CASCADE)
+    contenido = models.CharField(max_length=500)
+    def __str__(self):
+
+        return f"{self.destinatario}-{self.remitente}-{self.contenido}"
     

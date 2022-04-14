@@ -5,6 +5,7 @@ from App.models import *
 import random
 from Applogin.views import *
 from django.contrib.auth.models import User
+from django.template import Context
 # Create your views here.
 
 
@@ -150,6 +151,8 @@ def random_blog(request):
 
 
     rblog = list(Blog.objects.all())
+    print(rblog)
+    
 
     if len(rblog) > 3:
         
@@ -157,9 +160,51 @@ def random_blog(request):
         rblog = random.sample(rblog,4)
 
         return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3] })
+        
 
     else:
 
         
     
         return render(request, "App/inicio2.html")
+
+
+#mensajeria form
+    #class Mensajerias(models.Model):
+    
+    #remitente = models.CharField(max_length=40)
+    #destinatario = models.CharField(max_length=40)
+    #contenido = models.CharField(max_length=500)
+
+def mensaje(request):
+
+    
+    cont_familia = Mensajerias.objects.all()
+
+    cont_familia = Mensajerias.objects.filter(destinatario_id=request.user.username)
+    
+    print("1",cont_familia)
+    print("2", cont_familia)
+    
+    
+
+    if request.method == "POST":
+            
+            miFormulario = Mensajeria(request.POST)
+            print(miFormulario)
+            if miFormulario.is_valid():
+                informacion = miFormulario.cleaned_data
+                familiar = Mensajerias (remitente = informacion["remitente"],destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
+                familiar.save()
+                return render(request, "App/mensajes.html")
+
+
+        
+    else:
+            miFormulario = Mensajeria()
+        
+            return render (request, "App/mensajes.html", {"miFormulario":miFormulario, "cont_familia":cont_familia})
+
+    return  render(request, "App/mensajes.html", {"cont_familia":cont_familia})
+        
+    
