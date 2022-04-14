@@ -1,0 +1,19 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+
+{% for p in blogs %}
+    
+    <li>{{p}}</li>
+    <button>
+        <a href="{% url 'Borrarblog' p.id%}">Borrar</a>
+    </button>
+{% endfor %}
+
+<a href="{% url 'Crear' %}">Crear blog</a>
+    
+{% endblock cambiante %}

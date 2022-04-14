@@ -27,7 +27,7 @@ class Administradores(models.Model):
 
 class Blog(models.Model):
 
-    id = models.AutoField(primary_key=True)
+    
     titulo = models.CharField(max_length=40)
     creador = models.CharField(max_length=40)
     contenido = models.CharField(max_length=1000)
@@ -35,7 +35,7 @@ class Blog(models.Model):
 
     def __str__(self):
 
-        return f"{self.titulo}"
+        return f"{self.titulo, self.id, self.creador, self.contenido}"
     
 class Mensajerias(models.Model):
     

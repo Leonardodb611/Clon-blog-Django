@@ -17,16 +17,15 @@
         
             
             
-        <p>Nombre: <input style="border-radius: 10px; text-align: center;" type="text" name="remitente" pattern="[A-Za-z]{1,15}"></p>
-        <p>Apellido: <input style="border-radius: 10px; text-align: center;" type="text" name="destinatario" pattern="[A-Za-z]{1,15}"></p>
-        <p>Dni: <input style="border-radius: 10px; text-align: center;" type="text" name="contenido"></p>
+        <p>Remitente: <input style="border-radius: 10px; text-align: center;" type="text" name="remitente" pattern="[A-Za-z]{1,15}"></p>
+        <p>Destinatario: <input style="border-radius: 10px; text-align: center;" type="text" name="destinatario" pattern="[A-Za-z]{1,15}"></p>
+        <p>Mensaje:</p> 
+        <p><textarea name="contenido" id="" cols="10" rows="10" style="text-align: center;"></textarea></p>
          
           
-
-           
         
 
-        <input type="submit" value="Cargar curso">
+        <input type="submit" value="Enviar mensaje">
     </form>
 
 </div>
@@ -39,35 +38,24 @@
     <div style="text-align: center;" >
         <table class="table">
 
-            <thead>
-                <tr>
-                    <th >Nombre</th>
-                    <th >destinatario</th>
-                    <th >Dni</th>
-                    
-                </tr>
-            </thead>
+            
 
             
            
                 
 
             <tbody>
-                <tr>
-                {% for x in cont_familia %}
-
-                <td>{{x.remitente}}</td>
-                <td>{{x.destinatario}}</td>
-                <td>{{x.contenido}}</td>
                 
-            </tr>
+                {% for x in cont_familia %}
+                <div style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
+                <p>Mensaje de: {{x.remitente}}</p>
+                <p>{{x.destinatario}}</p>
+                <p>{{x.contenido}}</p>
+                </div>
+            
             {% endfor %}
             
-            {{hola.remitente}}
-
-            {{hola.destinatario}}
-            {{hola.contenido}}
-                
+           
                 
             </tbody>
 

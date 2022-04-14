@@ -7,10 +7,15 @@
 
     <form action="" method="POST">{% csrf_token %}
 
-        {{form.as_p}}
+        <p>Username: {{form.username}}</p>
+        <p>Email: {{form.email}}</p>
+        <p>Password: {{form.password1}}</p>
+        <p>Introduzca de nuevo su Password: {{form.password2}}</p>
 
         <button type="submit"> registrate</button>
 
     </form>
+
+    
     
 {% endblock cambiante %}

@@ -7,18 +7,17 @@
 
 {% block cambiante %}
 
-{% if error.form %}
 
-<p style="color: red;"> Estan mal los datos</p>
-
-{% endif %}
 
     <form action="" method="POST">{% csrf_token %}
 
-        {{form.as_p}}
+        <p>Usuario: {{form.username}}</p>
+        <p>Contraseña: {{form.password}}</p>
 
         <button type="submit"> registrate</button>
 
     </form>
+
+    
     
 {% endblock cambiante %}

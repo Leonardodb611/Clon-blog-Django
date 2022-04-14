@@ -23,7 +23,7 @@ def Crear_Blog(request):
        print(miFormulario1)
        if miFormulario1.is_valid():
            informacion = miFormulario1.cleaned_data
-           blog = Blog(titulo=informacion['titulo'],creador=informacion['creador'],contenido=informacion['contenido'])
+           blog = Blog(titulo=informacion['titulo'],creador=informacion[user.username],contenido=informacion['contenido'])
            blog.save()
            return render (request, "App/Gracias_blog.html")
 
@@ -102,10 +102,14 @@ def busqueda(request):
         
     return HttpResponse(mensaje)
 
-def busquedaBlog(request):
-    return render(request, "App/busqueda_blog.html")
+
+
+
+    
 
 def busquedablog(request):
+
+    
 
     if request.GET["prd"]:
 
@@ -123,6 +127,7 @@ def busquedablog(request):
         mensaje = "no has introducido nada"
         
     return HttpResponse(mensaje)
+
 
 def busquedaProducto(request):
     return render(request, "App/busqueda_producto.html")
@@ -169,13 +174,6 @@ def random_blog(request):
         return render(request, "App/inicio2.html")
 
 
-#mensajeria form
-    #class Mensajerias(models.Model):
-    
-    #remitente = models.CharField(max_length=40)
-    #destinatario = models.CharField(max_length=40)
-    #contenido = models.CharField(max_length=500)
-
 def mensaje(request):
 
     
@@ -196,7 +194,7 @@ def mensaje(request):
                 informacion = miFormulario.cleaned_data
                 familiar = Mensajerias (remitente = informacion["remitente"],destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
                 familiar.save()
-                return render(request, "App/mensajes.html")
+                return render(request, "App/mensajes.html", {"cont_familia":cont_familia})
 
 
         
@@ -207,4 +205,24 @@ def mensaje(request):
 
     return  render(request, "App/mensajes.html", {"cont_familia":cont_familia})
         
+
+
+
+
+
+def leerblogs(request):
     
+    blogs = Blog.objects.all()
+    contexto = {"blogs":blogs}
+
+    return render (request, "App/blogs.html", contexto)    
+
+def eliminarblogs( request, pk):
+
+    try:
+        blogs = Blog.objects.get(id=pk)
+        blogs.delete()
+
+        return redirect ("/")
+    except Exception as exc:
+        return redirect ("/")
