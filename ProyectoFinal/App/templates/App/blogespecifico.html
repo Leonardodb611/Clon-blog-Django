@@ -1,0 +1,16 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+{{blogs.titulo}}
+{{blogs.creador}}
+{{blogs.contenido}}
+
+
+
+<p><a href="{% url 'Inicio' %}">Volver al inciio</a></p>
+    
+{% endblock cambiante %}

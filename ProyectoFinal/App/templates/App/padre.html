@@ -23,17 +23,23 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>
+                        
+                        {% if request.user.is_authenticated %}
+                            
+                        
+                            
                         <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
                         <a class="navbar-brand" href="{% url 'Crear'%}">Crear Blog</a>
-                        <a class="navbar-brand" href="{% url 'Nuevo'%}">Crear Producto</a>
-                        <a class="navbar-brand" href="{% url 'Formulario'%}">Nuevo usuario</a>
-                        <a class="navbar-brand" href="{% url 'Busqueda'%}">Busqueda</a>
-                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>
-
                         
-                        {% if not request.user.is_authenticated %}
-                        <a class="navbar-brand" href="{% url 'register'%}">registro</a>
+                        <a class="navbar-brand" href="{% url 'Formulario'%}">Nuevo usuario</a>
+                        
+                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>
                         {% endif %}
+                        
+                        
+                        
                  
                     </ul>
                 </div>
@@ -43,11 +49,15 @@
                     <div>
                         <center>
                         {% if not request.user.is_authenticated %}
-                            <a class="navbar-brand border border-ligth" style="margin-right: 20px; padding: 5px;" href="{% url 'login'%}">Iniciar sesion</a>
+                            <a class="navbar-brand" href="{% url 'register'%}">Registro</a>
+                            <a class="navbar-brand "  href="{% url 'login'%}">Iniciar sesion</a>
 
                         {% else %}
+                        
                             <div style="padding-top: 15px;">
-                            <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; ">{{request.user.username}} | <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'logout'%}">LOGOUT</a></p>
+                                
+                                
+                            <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; "><img style="border-radius: 1500px;" src="{{url}}" width="40px"> {{request.user.username}} | <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'logout'%}">LOGOUT</a></p>
                             <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'mensajeria'%}">Mensajes</a>
                             
                             </div>
@@ -60,7 +70,7 @@
         <center class="mb-5">
             {% block cambiante %}
 
-
+            
             
             {% endblock cambiante %}
         </center>

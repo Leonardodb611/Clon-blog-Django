@@ -10,8 +10,9 @@ class UsuarioFormulario(forms.Form):
 class CrearBlog(forms.Form):
 
     titulo = forms.CharField(max_length=40)
-    creador = forms.CharField(max_length=40)
+   
     contenido = forms.CharField(max_length=4000)
+    
 
 
 class Producto (forms.Form):

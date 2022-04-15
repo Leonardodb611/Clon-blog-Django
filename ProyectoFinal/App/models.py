@@ -29,9 +29,11 @@ class Blog(models.Model):
 
     
     titulo = models.CharField(max_length=40)
-    creador = models.CharField(max_length=40)
+    creador = models.CharField(max_length=40,blank=True)
     contenido = models.CharField(max_length=1000)
     creacion = models.DateField(auto_now=True)
+    foto = models.ImageField(upload_to="avatars", null=True, blank = True)
+    
 
     def __str__(self):
 
@@ -46,3 +48,10 @@ class Mensajerias(models.Model):
 
         return f"{self.destinatario}-{self.remitente}-{self.contenido}"
     
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, to_field="username", on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to="avatars", null=True, blank = True)
+
+    def __str__(self):
+        return f"{self.user}"

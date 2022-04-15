@@ -8,12 +8,37 @@
 
 {% for p in blogs %}
     
-    <li>{{p}}</li>
+    <li>{{p.titulo}}
+        {{p.creador}}
+        {{p.contenido}}
+    </li>
+    
+    {% if request.user.is_authenticated %}
     <button>
         <a href="{% url 'Borrarblog' p.id%}">Borrar</a>
+        
     </button>
+    <button>
+        <a href="{% url 'Editarblog' p.id%}">editar</a>
+    </button>
+    <button>
+        <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
+    </button>
+        
+    {% else %}
+        
+    <button>
+        <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
+    </button>
+
+    
+    
+        
+    {% endif %}
+        
+        
 {% endfor %}
 
-<a href="{% url 'Crear' %}">Crear blog</a>
+<p><a href="{% url 'Crear' %}">Crear blog</a></p>
     
 {% endblock cambiante %}
