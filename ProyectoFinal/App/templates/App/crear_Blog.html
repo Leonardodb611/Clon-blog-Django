@@ -7,34 +7,36 @@
 
 <p><h3>CREAR NUEVO BLOG</h3></p>
 
-    
+
+
 {% if miFormulario1.errors %}
 
 <p style="color: red;"> Estan mal los datos</p>
 
 {% endif %}
 
-<form action="" method="POST">{% csrf_token %}
 
-    <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
-        <!-- Post header-->
-        <table>
-            
+    <form action="" method="POST">{% csrf_token %}
 
-            <p> Titulo: <input style="border-radius: 10px; text-align: center;" type="text" name="titulo" pattern="[A-Za-z]{1,15}"></p>
-            <p> Creador: <input  style="border-radius: 10px; text-align: center;" type="text" name="creador" pattern="[A-Za-z]{1,15}"></p>
-            <p>Contenido</p>
-            <textarea style='border-radius: 10px; text-align: center; width: 800px; height: 800px; padding: 1%;'  {{miFormulario1.contenido}}</textarea>
-            
-            
-        
-             </table>
-        
-        
-             <input type="submit", value="Enviar">
-    </article>
+        <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
+            <!-- Post header-->
+            <table>
+                
 
-</form>
+                <p> Titulo: <input style="border-radius: 10px; text-align: center;" type="text" name="titulo" pattern="[A-Za-z]{1,15}"></p>
+                <p> Creador: <input  style="border-radius: 10px; text-align: center;" type="text" name="creador" pattern="[A-Za-z]{1,15}"></p>
+                <p>Contenido</p>
+                <textarea style='border-radius: 10px; text-align: center; width: 800px; height: 800px; padding: 1%;'  {{miFormulario1.contenido}}</textarea>
+                
+                
+            
+                </table>
+            
+            
+                <input type="submit", value="Enviar">
+        </article>
+
+    </form>
     
 {% endblock cambiante %}
 

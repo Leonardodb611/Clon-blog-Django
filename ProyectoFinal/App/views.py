@@ -159,16 +159,26 @@ def mensaje(request):
 def leerblogs(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     blogs = Blog.objects.all()
-
+    
     if request.user.is_authenticated:
-        contexto = {"blogs":blogs, "url": avatares[0].imagen.url}
 
-        return render (request, "App/blogs.html", contexto)    
+        if len(blogs) == 0:
+            mensaje = "No hay blogs, disculpe las molestias. Para crear el primero ingrese al sigueinte link."
+            return render(request, "App/noBLogs.html", {"mensaje": mensaje, "url": avatares[0].imagen.url})
+        else:
+            contexto = {"blogs":blogs, "url": avatares[0].imagen.url}
+
+            return render (request, "App/blogs.html", contexto)    
     
     else:
-        contexto = {"blogs":blogs}
 
-        return render (request, "App/blogs.html", contexto) 
+        if len(blogs) == 0:
+            mensaje = "No hay blogs, disculpe las molestias. Inicia sesion o crea una cuenta para poder escribir tu blog!"
+            return render(request, "App/noBLogs.html", {"mensaje": mensaje})
+        else:  
+            contexto = {"blogs":blogs}
+
+            return render (request, "App/blogs.html", contexto) 
 
 @login_required
 def eliminarblogs( request, pk):

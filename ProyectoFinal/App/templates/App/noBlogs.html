@@ -1,0 +1,23 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+    
+    {% if request.user.is_authenticated %}
+        {{mensaje}}
+
+    <p><a class="navbar-brand" href="{% url 'Crear'%}">Crear Blog</a></p>
+        
+    {% else %}
+        {{mensaje}}
+    {% endif %}
+        
+   
+
+   
+
+
+{% endblock cambiante %}
