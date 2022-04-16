@@ -16,9 +16,7 @@ def inicio(request):
 
     return render (request, "App/inicio2.html",)
 
-
-
-#formulario para crear
+#fomulario para crear
 def Crear_Blog(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     if request.method == "POST":
@@ -44,10 +42,6 @@ def Crear_Blog(request):
     
     return render (request, "App/crear_Blog.html", {"miFormulario1": miFormulario1 ,"url": avatares[0].imagen.url})
 
-
-
-
-
 def usuarioFormulario(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -72,10 +66,6 @@ def usuarioFormulario(request):
         miFormulario = UsuarioFormulario()
 
         return render(request, "App/formulario.html", {"miFormulario":miFormulario,"url": avatares[0].imagen.url})
-
-
-
-
 
 def random_blog(request):
 
@@ -117,9 +107,6 @@ def random_blog(request):
         
             return render(request, "App/inicio2.html")
 
-
-
-
 def mensaje(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
@@ -151,11 +138,6 @@ def mensaje(request):
 
     return  render(request, "App/mensajes.html", {"cont_familia":cont_familia,"url": avatares[0].imagen.url})
         
-
-
-
-
-
 def leerblogs(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     blogs = Blog.objects.all()
@@ -228,10 +210,6 @@ def blogEspecifico(request, pk):
         contexto = {"blogs":blogs}
 
         return render (request, "App/blogespecifico.html", contexto)
-
-
-
-
 
 
 
