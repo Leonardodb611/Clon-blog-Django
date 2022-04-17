@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from Applogin.forms import *
 from Applogin.models import *
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,7 +20,9 @@ def register(request):
         if form.is_valid():
 
             username = form.cleaned_data["username"]
+            
             form.save()
+            
             return redirect("/")
 
 
@@ -45,9 +48,18 @@ def login_request (request):
             user = authenticate(username=usuario, password=contrasenia)
 
             if user is not None:
-                login(request, user)
 
-                return redirect("/")
+                avatar = Avatar.objects.filter(user=usuario)
+                
+                if len(avatar) > 0:
+
+                    login(request, user)
+
+                    return redirect("/")
+
+                else:
+                    login(request, user)
+                    return render ( request, "Applogin/nuevoAvatar.html")
 
             else:
                 return render(request, "Applogin/login.html", {"form":form})
@@ -60,14 +72,69 @@ def login_request (request):
 
     return render(request, "Applogin/login.html", {"form":form})
 
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+
+        miFormulario = UserEditForm(request.POST)
+        miFormulario2 = AvatarFormulario(request.POST, request.FILES)
+
+        if miFormulario.is_valid():
+
+
+            
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion["email"]
+            usuario.first_name = informacion["first_name"]
+            usuario.last_name = informacion["last_name"]
+            usuario.password1 = informacion["password1"]
+            usuario.passwprd2 = informacion["password2"]
+            usuario.save()
+
+            return redirect ("/")
+    
+    else:
+        miFormulario = UserEditForm(initial={"email":usuario.email})
+        miFormulario2 = AvatarFormulario()
+
+    return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+def agregarAvatar(request):
+
+    if request.method == "POST":
+
+        formulario = AvatarFormulario(request.POST,request.FILES)
+
+        if formulario.is_valid():
+
+            usuario = request.user
+
+            avatar = Avatar.objects.filter(user=usuario)
+
+            if len(avatar) > 0:
+                avatar = avatar[0]
+                avatar.imagen = formulario.cleaned_data["imagen"]
+                avatar.save()
+
+            else:
+                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
+                avatar.save()
+            
+        return redirect("/")
+    else:
+
+        formulario = AvatarFormulario()
+
+    return render(request, "Applogin/agregarAvatar.html", {"form": formulario})
 
 
 
 
-
-
-
-
+               
 
 
 

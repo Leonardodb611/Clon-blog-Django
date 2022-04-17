@@ -218,3 +218,36 @@ def foto(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
        
     return render(request, "App/padre.html", {"url":avatares[0].imagen.url} )
+
+def editarPerfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+
+        miFormulario = UserEditForm(request.POST)
+        
+
+        if miFormulario.is_valid():
+
+
+            u = User.objects.get(username=request.user)
+            
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion["email"]
+            usuario.first_name = informacion["first_name"]
+            usuario.last_name = informacion["last_name"]
+            usuario.password1 = informacion["password1"]
+            usuario.passwprd2 = informacion["password2"]
+            usuario.save()
+
+            return redirect ("/")
+    
+    else:
+        miFormulario = UserEditForm(initial={"email":usuario.email})
+        
+
+    return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+

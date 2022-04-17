@@ -1,0 +1,19 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <p>SELECCIONA TU AVATAR PREFERIDO</p>
+        {{form.as_p}}
+
+        <button type="submit"> Agregar nuevo avatar</button>
+        
+
+    </form>
+
+    
+    
+{% endblock cambiante %}

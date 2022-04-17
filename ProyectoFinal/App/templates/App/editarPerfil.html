@@ -1,0 +1,33 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+  <form action="" method="POST">{% csrf_token %}
+
+        <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
+            <!-- Post header-->
+            <table>
+                
+
+                {{miFormulario.as_table}}
+                
+                
+                
+            
+            </table>
+            <form method="POST" enctype="multipart/form-data">
+                {{miFormulario2.as_table}}
+
+            </form>
+            
+            
+                <p><input type="submit", value="Enviar"></p>
+        </article>
+
+    </form>
+
+{% endblock cambiante %}
+

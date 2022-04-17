@@ -7,5 +7,5 @@ admin.site.register(Administradores)
 admin.site.register(Blog)
 admin.site.register(Productos)
 admin.site.register(Mensajerias)
-admin.site.register(Avatar)
+
 
