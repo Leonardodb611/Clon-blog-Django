@@ -29,10 +29,12 @@ class Blog(models.Model):
 
     
     titulo = models.CharField(max_length=40)
+
     creador = models.CharField(max_length=40,blank=True)
     contenido = models.CharField(max_length=1000)
     creacion = models.DateField(auto_now=True)
     foto = models.ImageField(upload_to="avatars", null=True, blank = True)
+    
     
 
     def __str__(self):
@@ -50,9 +52,9 @@ class Mensajerias(models.Model):
     
 class RedesSociales(models.Model):
     user = models.OneToOneField(User, to_field="username", on_delete=models.CASCADE)
-    facebook = models.CharField(max_length=500, blank=True)
-    instagram = models.CharField(max_length=500, blank=True)
-    twitter = models.CharField(max_length=500, blank=True)
+    facebook = models.CharField(max_length=500, null=True,  blank=True)
+    instagram = models.CharField(max_length=500, null=True,  blank=True)
+    twitter = models.CharField(max_length=500, null=True,  blank=True)
 
 
     def __str__(self):

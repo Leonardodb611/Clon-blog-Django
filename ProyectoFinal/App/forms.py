@@ -14,16 +14,8 @@ class CrearBlog(forms.Form):
     titulo = forms.CharField(max_length=40)
    
     contenido = forms.CharField(max_length=4000)
+    foto = forms.ImageField()
     
-
-
-class Producto (forms.Form):
-
-    
-    producto = forms.CharField(max_length=40)
-    categoria = forms.CharField(max_length=40)
-    precio = forms.IntegerField()
-
 
 class Mensajeria(forms.Form):
     

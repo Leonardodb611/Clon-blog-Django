@@ -16,7 +16,7 @@
 {% endif %}
 
 
-    <form action="" method="POST">{% csrf_token %}
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
 
         <article style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
             <!-- Post header-->
@@ -24,7 +24,7 @@
                 
 
                 <p> Titulo: <input style="border-radius: 10px; text-align: center;" type="text" name="titulo" ></p>
-                
+                <p><input type="file" name="foto" id="">
                 <p>Contenido</p>
                 <textarea style='border-radius: 10px; text-align: center; width: 800px; height: 800px; padding: 1%;'  {{miFormulario1.contenido}}</textarea>
                 

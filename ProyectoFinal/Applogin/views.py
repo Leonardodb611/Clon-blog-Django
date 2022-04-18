@@ -130,6 +130,15 @@ def agregarAvatar(request):
 
     return render(request, "Applogin/agregarAvatar.html", {"form": formulario})
 
+def BorrarAvatar(request):
+
+    usuario = request.user
+
+    avatar = Avatar.objects.get(user=usuario)
+    avatar.imagen = "avatars/no-avatar.png"
+    avatar.save()
+
+    return redirect ("/")
 
 
 

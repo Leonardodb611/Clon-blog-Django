@@ -21,14 +21,14 @@ def Crear_Blog(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     if request.method == "POST":
 
-        miFormulario1 = CrearBlog(request.POST)
+        miFormulario1 = CrearBlog(request.POST, request.FILES)
         print(miFormulario1)
         
         
         user = request.user.username
         if miFormulario1.is_valid():
            informacion = miFormulario1.cleaned_data
-           blog = Blog(titulo=informacion['titulo'], creador=user,contenido=informacion['contenido'])
+           blog = Blog(titulo=informacion['titulo'], creador=user, contenido=informacion['contenido'], foto=informacion['foto'])
            
            blog.save()
            
@@ -77,12 +77,12 @@ def random_blog(request):
     
     if request.user.is_authenticated:
         
-        if len(rblog) > 3:
+        if len(rblog) > 4:
             
             
-            rblog = random.sample(rblog,4)
+            rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "url": avatares[0].imagen.url})
+            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "rfoto":rblog[0].foto.url, "url": avatares[0].imagen.url})
             
 
         else:
@@ -92,12 +92,12 @@ def random_blog(request):
     
     else:
 
-        if len(rblog) > 3:
+        if len(rblog) > 4:
             
             
-            rblog = random.sample(rblog,4)
+            rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3]})
+            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3]})
             
 
         else:
@@ -177,17 +177,18 @@ def modificarBlogs(request, pk):
     blogs = Blog.objects.get(id=pk)
 
     if request.method == "POST":
-        miFormulario = CrearBlog(request.POST)
+        miFormulario = CrearBlog(request.POST, request.FILES)
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
 
             blogs.titulo = informacion["titulo"]
             blogs.contenido = informacion["contenido"]
+            blogs.foto = informacion["foto"]
         
             blogs.save()
 
-            return render(request, "App/inicio.html")
+            return redirect ("/")
     else:
 
         miFormulario = CrearBlog(initial={"titulo":blogs.titulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
@@ -200,7 +201,7 @@ def blogEspecifico(request, pk):
     
     if request.user.is_authenticated:
 
-        contexto = {"blogs":blogs , "url": avatares[0].imagen.url}
+        contexto = {"blogs":blogs , "url": avatares[0].imagen.url, "url2": blogs.foto.url}
 
         return render (request, "App/blogespecifico.html", contexto)
     
@@ -209,7 +210,6 @@ def blogEspecifico(request, pk):
         contexto = {"blogs":blogs}
 
         return render (request, "App/blogespecifico.html", contexto)
-
 
 def foto(request):
     
@@ -272,7 +272,6 @@ def AgregarRedes(request):
 
         red = RedesSociales.objects.filter(user=usuario)
         
-        
         user = request.user.username
         
         if miFormulario1.is_valid():
@@ -288,3 +287,4 @@ def AgregarRedes(request):
         miFormulario1 = Redessociales()
     
     return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
+
