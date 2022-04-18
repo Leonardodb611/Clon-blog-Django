@@ -82,12 +82,11 @@ def random_blog(request):
             
             rblog = random.sample(rblog,4)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3]})
+            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "url": avatares[0].imagen.url})
             
 
         else:
 
-            
         
             return render(request, "App/inicio2.html", {"url": avatares[0].imagen.url})
     
@@ -212,7 +211,6 @@ def blogEspecifico(request, pk):
         return render (request, "App/blogespecifico.html", contexto)
 
 
-
 def foto(request):
     
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -223,16 +221,14 @@ def editarPerfil(request):
 
     usuario = request.user
 
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+
     if request.method == "POST":
 
         miFormulario = UserEditForm(request.POST)
         
 
         if miFormulario.is_valid():
-
-
-            u = User.objects.get(username=request.user)
-            
 
             informacion = miFormulario.cleaned_data
 
@@ -246,8 +242,49 @@ def editarPerfil(request):
             return redirect ("/")
     
     else:
-        miFormulario = UserEditForm(initial={"email":usuario.email})
+        miFormulario = UserEditForm(initial={"email":usuario.email,"first_name":usuario.first_name, "last_name":usuario.last_name})
         
 
-    return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+    return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario, "url":avatares[0].imagen.url})
 
+def PerfilUsuario(request):
+
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    usuario = User.objects.get(username=request.user.username)
+    redes = RedesSociales.objects.get(user=request.user.username)
+
+    contexto = {"usuario":usuario, "url": avatares[0].imagen.url, "redes":redes}
+
+    
+
+    return render (request, "App/PerfilUsuario.html", contexto)
+
+def AgregarRedes(request):
+
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    
+    if request.method == "POST":
+
+        miFormulario1 = Redessociales(request.POST)
+        print(miFormulario1)
+
+        usuario = request.user
+
+        red = RedesSociales.objects.filter(user=usuario)
+        
+        
+        user = request.user.username
+        
+        if miFormulario1.is_valid():
+           informacion = miFormulario1.cleaned_data
+           redes = RedesSociales(user=usuario, facebook=informacion['facebook'], twitter=informacion['twitter'],instagram=informacion['instagram'])
+           redes.save()
+           
+    
+           return redirect("/")
+
+    else:
+
+        miFormulario1 = Redessociales()
+    
+    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})

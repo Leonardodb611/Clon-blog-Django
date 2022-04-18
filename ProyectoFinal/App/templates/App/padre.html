@@ -27,26 +27,18 @@
                         
                         
                         {% if request.user.is_authenticated %}
-                            
-                        
-                          
+                                      
                         <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
                         <a class="navbar-brand" href="{% url 'Crear'%}">Crear Blog</a>
-                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a> 
-                        <a class="navbar-brand" href="{% url 'EditarPerfil'%}">editar</a> 
+                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>      
+                        <a class="navbar-brand" href="{% url 'Perfil'%}">Perfil</a> 
                         
-                        
-                        
+                    
                         {% endif %}
-                        
-                        
-                        
-                 
+                               
                     </ul>
-                </div>
-                
+                </div>            
             </div>
-
                     <div>
                         <center>
                         {% if not request.user.is_authenticated %}
@@ -58,8 +50,6 @@
                         {% else %}
                         
                             <div style="padding-top: 15px;">
-                                
-                                
                             <p class="navbar-brand border border-ligth" style=" padding-top: 15px; margin-right: 20px; padding: 5px; "><img style="border-radius: 1500px;" src="{{url}}" width="40px"> {{request.user.username}} | <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'logout'%}">LOGOUT</a></p>
                             <a class="navbar-brand" style="text-decoration: underline;" href="{% url 'mensajeria'%}">Mensajes</a>
                             

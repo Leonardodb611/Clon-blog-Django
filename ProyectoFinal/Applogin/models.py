@@ -12,3 +12,7 @@ class Avatar(models.Model):
         return f"{self.user}"
 
 
+
+    
+
+

@@ -23,7 +23,7 @@ def register(request):
             
             form.save()
             
-            return redirect("/")
+            return redirect ("/")
 
 
     else:
@@ -83,9 +83,6 @@ def editarPerfil(request):
 
         if miFormulario.is_valid():
 
-
-            
-
             informacion = miFormulario.cleaned_data
 
             usuario.email = informacion["email"]
@@ -104,7 +101,8 @@ def editarPerfil(request):
     return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
 def agregarAvatar(request):
-
+    
+    
     if request.method == "POST":
 
         formulario = AvatarFormulario(request.POST,request.FILES)
@@ -119,12 +117,13 @@ def agregarAvatar(request):
                 avatar = avatar[0]
                 avatar.imagen = formulario.cleaned_data["imagen"]
                 avatar.save()
+                return redirect("/")
 
             else:
                 avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
                 avatar.save()
             
-        return redirect("/")
+                return render (request, "App/redireccion_redes.html")   
     else:
 
         formulario = AvatarFormulario()

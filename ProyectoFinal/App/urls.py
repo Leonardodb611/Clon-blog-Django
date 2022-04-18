@@ -13,11 +13,10 @@ urlpatterns = [
     path("eliminarblog/<pk>", views.eliminarblogs, name="Borrarblog"),
     path("editarblog/<pk>", views.modificarBlogs, name="Editarblog" ),
     path("blogespecifico/<pk>", views.blogEspecifico, name="Blogespecifico" ),
-    path("editarPerfil", views.editarPerfil, name="EditarPerfil")
+    path("editarPerfil", views.editarPerfil, name="EditarPerfil"),
+    path("perfil", views.PerfilUsuario, name="Perfil"),
+    path("redes", views.AgregarRedes, name="Redes"),
     
 
-    
-    
-    
     
 ]

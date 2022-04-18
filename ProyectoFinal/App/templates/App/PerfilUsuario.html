@@ -1,0 +1,26 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+<p><img  src="{{url}}" width="400px"></p>
+<a class="navbar-brand" href="{% url 'AgregarAvatar'%}">Cambiar tu avatar!</a> 
+<p>{{usuario.username}}</p>
+<p>{{usuario.first_name}}</p>
+<p>{{usuario.last_name}}</p>
+<p>{{usuario.email}}</p>
+<a class="navbar-brand" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
+<p>{{redes.facebook}}</p>
+<p>{{redes.twitter}}</p>
+<p>{{redes.instagram}}</p>
+
+
+
+
+
+
+
+<p><a href="{% url 'Inicio' %}">Volver al inciio</a></p>
+    
+{% endblock cambiante %}
