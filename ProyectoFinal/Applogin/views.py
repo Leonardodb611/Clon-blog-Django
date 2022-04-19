@@ -114,6 +114,7 @@ def agregarAvatar(request):
             avatar = Avatar.objects.filter(user=usuario)
 
             if len(avatar) > 0:
+                
                 avatar = avatar[0]
                 avatar.imagen = formulario.cleaned_data["imagen"]
                 avatar.save()

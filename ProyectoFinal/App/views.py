@@ -28,11 +28,9 @@ def Crear_Blog(request):
         user = request.user.username
         if miFormulario1.is_valid():
            informacion = miFormulario1.cleaned_data
-           blog = Blog(titulo=informacion['titulo'], creador=user, contenido=informacion['contenido'], foto=informacion['foto'])
+           blog = Blog(titulo=informacion['titulo'], subtitulo=informacion['subtitulo'], creador=user, contenido=informacion['contenido'], foto=informacion['foto'])
            
            blog.save()
-           
-           
            
            return render (request, "App/Gracias_blog.html")
 

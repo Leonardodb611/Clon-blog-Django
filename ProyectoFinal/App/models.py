@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 from django.contrib.auth.models import  User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Usuario(models.Model):
@@ -31,10 +32,10 @@ class Blog(models.Model):
     titulo = models.CharField(max_length=40)
 
     creador = models.CharField(max_length=40,blank=True)
-    contenido = models.CharField(max_length=1000)
+    contenido = RichTextField()
     creacion = models.DateField(auto_now=True)
     foto = models.ImageField(upload_to="avatars", null=True, blank = True)
-    
+    subtitulo = models.CharField(max_length=40)
     
 
     def __str__(self):

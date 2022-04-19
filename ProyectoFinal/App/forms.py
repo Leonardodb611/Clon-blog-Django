@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+from ckeditor.widgets import CKEditorWidget
 
 class UsuarioFormulario(forms.Form):
 
@@ -12,8 +14,8 @@ class UsuarioFormulario(forms.Form):
 class CrearBlog(forms.Form):
 
     titulo = forms.CharField(max_length=40)
-   
-    contenido = forms.CharField(max_length=4000)
+    subtitulo = forms.CharField(max_length=40)
+    contenido = forms.CharField(widget = CKEditorWidget())
     foto = forms.ImageField()
     
 

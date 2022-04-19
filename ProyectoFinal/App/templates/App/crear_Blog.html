@@ -2,6 +2,9 @@
 
 {% load static %}
 
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
 
 {% block cambiante %}
 
@@ -22,11 +25,8 @@
             <!-- Post header-->
             <table>
                 
-
-                <p> Titulo: <input style="border-radius: 10px; text-align: center;" type="text" name="titulo" ></p>
-                <p><input type="file" name="foto" id="">
-                <p>Contenido</p>
-                <textarea style='border-radius: 10px; text-align: center; width: 800px; height: 800px; padding: 1%;'  {{miFormulario1.contenido}}</textarea>
+                {{miFormulario1.media}}
+                {{miFormulario1.as_p}}
                 
                 
             

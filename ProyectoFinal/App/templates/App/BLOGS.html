@@ -7,15 +7,17 @@
 
 
 
-
+<div style="margin: 2%;">
 {% for p in blogs %}
+
+    <li style="border-style: solid; border-width: 1px; list-style: none; margin: 1%; margin-left: 20%; margin-right: 20%;">
+    <p> Titulo: {{p.titulo}}</p>
+    <p> Subtitulo: {{p.subtitulo}}</p>
+    <p> Creador: {{p.creador}}</p>
     
-    <li>{{p.titulo}}
-        {{p.creador}}
-        {{p.contenido}}
-    </li>
     
     {% if request.user.is_authenticated %}
+    <div style="padding: 1%;">
     <button>
         <a href="{% url 'Borrarblog' p.id%}">Borrar</a>
         
@@ -26,21 +28,23 @@
     <button>
         <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
     </button>
+    </div>
         
     {% else %}
-        
+    <div style="padding: 1%;"> 
     <button>
         <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
     </button>
-
+    </div>
+    </li>
     
-    
-        
     {% endif %}
         
         
 {% endfor %}
+</div>
 
+<div>
 <p><a href="{% url 'Crear' %}">Crear blog</a></p>
-    
+</div>    
 {% endblock cambiante %}

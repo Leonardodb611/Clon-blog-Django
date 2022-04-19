@@ -5,21 +5,20 @@
 
 {% block cambiante %}
 <p><img  src="{{url}}" style="border-radius: 1500px;" width="400px"></p>
+
+{% if request.user.is_superuser %}
 <a class="navbar-brand" href="{% url 'AgregarAvatar'%}">Cambiar tu avatar!</a> 
 <a class="navbar-brand" href="{% url 'BorrarAvatar'%}">borrar tu avatar!</a> 
-
-
+{% endif %}
 <p>{{usuario.username}}</p>
 <p>{{usuario.first_name}}</p>
 <p>{{usuario.last_name}}</p>
 <p>{{usuario.email}}</p>
 <a class="navbar-brand" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
 <p>{{redes.facebook}}</p>
-<p>{{redes.twitter}}</p>
 <p>{{redes.instagram}}</p>
+<p>{{redes.twitter}}</p>
 <a class="navbar-brand" href="{% url 'Redes'%}">Editar tu informacion!</a> 
-
-
 
 
 
