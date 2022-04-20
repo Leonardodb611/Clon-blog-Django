@@ -95,7 +95,7 @@ def random_blog(request):
             
             rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3]})
+            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3], "rfoto":rblog[0].foto.url})
             
 
         else:
@@ -183,13 +183,14 @@ def modificarBlogs(request, pk):
             blogs.titulo = informacion["titulo"]
             blogs.contenido = informacion["contenido"]
             blogs.foto = informacion["foto"]
+            blogs.subtitulo = informacion["subtitulo"]
         
             blogs.save()
 
             return redirect ("/")
     else:
 
-        miFormulario = CrearBlog(initial={"titulo":blogs.titulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
+        miFormulario = CrearBlog(initial={"titulo":blogs.titulo,"subtitulo":blogs.subtitulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
 
     return render (request, "App/editarblog.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 
@@ -205,7 +206,7 @@ def blogEspecifico(request, pk):
     
     else:
 
-        contexto = {"blogs":blogs}
+        contexto = {"blogs":blogs , "url2": blogs.foto.url}
 
         return render (request, "App/blogespecifico.html", contexto)
 
