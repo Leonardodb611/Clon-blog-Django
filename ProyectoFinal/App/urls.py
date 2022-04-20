@@ -15,7 +15,8 @@ urlpatterns = [
     path("blogespecifico/<pk>", views.blogEspecifico, name="Blogespecifico" ),
     path("editarPerfil", views.editarPerfil, name="EditarPerfil"),
     path("perfil", views.PerfilUsuario, name="Perfil"),
-    path("redes", views.AgregarRedes, name="Redes"),
+    path("about", views.About, name="About")
+    
     
 
     

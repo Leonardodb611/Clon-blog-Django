@@ -59,7 +59,7 @@ def login_request (request):
 
                 else:
                     login(request, user)
-                    return render ( request, "Applogin/nuevoAvatar.html")
+                    return render ( request, "App/redireccion_redes.html")
 
             else:
                 return render(request, "Applogin/login.html", {"form":form})
@@ -121,7 +121,7 @@ def agregarAvatar(request):
                 return redirect("/")
 
             else:
-                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
+                avatar = Avatar(user=usuario, imagen="avatars/no-avatar.png")
                 avatar.save()
             
                 return render (request, "App/redireccion_redes.html")   
@@ -142,8 +142,35 @@ def BorrarAvatar(request):
     return redirect ("/")
 
 
+def AgregarRedes(request):
 
-               
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    
+    if request.method == "POST":
+
+        miFormulario1 = Redessociales(request.POST)
+        print(miFormulario1)
+
+        usuario = request.user
+
+        red = RedesSociales.objects.filter(user=usuario)
+        
+        user = request.user.username
+        
+        if miFormulario1.is_valid():
+           informacion = miFormulario1.cleaned_data
+           redes = RedesSociales(user=usuario, facebook=informacion['facebook'], twitter=informacion['twitter'],instagram=informacion['instagram'])
+           redes.save()
+           avatar = Avatar(user=usuario, imagen="avatars/no-avatar.png")
+           avatar.save()
+           return redirect("/")
+
+    else:
+
+        miFormulario1 = Redessociales()
+    
+    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
+         
 
 
 

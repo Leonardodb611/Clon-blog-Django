@@ -95,7 +95,7 @@ def random_blog(request):
             
             rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3]})
+            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3], "rfoto":rblog[0].foto.url})
             
 
         else:
@@ -247,6 +247,7 @@ def editarPerfil(request):
 
 def PerfilUsuario(request):
 
+
     avatares = Avatar.objects.filter(user_id=request.user.username)
     usuario = User.objects.get(username=request.user.username)
     redes = RedesSociales.objects.get(user=request.user.username)
@@ -257,32 +258,7 @@ def PerfilUsuario(request):
 
     return render (request, "App/PerfilUsuario.html", contexto)
 
-def AgregarRedes(request):
 
-    avatares = Avatar.objects.filter(user_id=request.user.username)
-    
-    if request.method == "POST":
 
-        miFormulario1 = Redessociales(request.POST)
-        print(miFormulario1)
-
-        usuario = request.user
-
-        red = RedesSociales.objects.filter(user=usuario)
-        
-        user = request.user.username
-        
-        if miFormulario1.is_valid():
-           informacion = miFormulario1.cleaned_data
-           redes = RedesSociales(user=usuario, facebook=informacion['facebook'], twitter=informacion['twitter'],instagram=informacion['instagram'])
-           redes.save()
-           
-    
-           return redirect("/")
-
-    else:
-
-        miFormulario1 = Redessociales()
-    
-    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
-
+def About(request):
+    return render (request, "App/About.html")

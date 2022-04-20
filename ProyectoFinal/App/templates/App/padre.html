@@ -31,7 +31,8 @@
                         <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
                         <a class="navbar-brand" href="{% url 'Crear'%}">Crear Blog</a>
                         <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>      
-                        <a class="navbar-brand" href="{% url 'Perfil'%}">Perfil</a> 
+                        <a class="navbar-brand" href="{% url 'Perfil'%}">Perfil</a>
+                        <a class="navbar-brand" href="{% url 'About'%}">Sobre mi</a>  
                         
                     
                         {% endif %}
@@ -44,6 +45,7 @@
                         {% if not request.user.is_authenticated %}
                             <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
                             <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>
+                            <a class="navbar-brand" href="{% url 'About'%}">Sobre mi</a>  
                             <a class="navbar-brand" href="{% url 'register'%}">Registro</a>
                             <a class="navbar-brand "  href="{% url 'login'%}">Iniciar sesion</a>
 
