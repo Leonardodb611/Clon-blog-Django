@@ -21,7 +21,7 @@ class CrearBlog(forms.Form):
 
 class Mensajeria(forms.Form):
     
-    remitente = forms.CharField(max_length=40)
+    
     destinatario = forms.CharField(max_length=40)
     contenido = forms.CharField(max_length=500)
      

@@ -17,10 +17,10 @@
         
             
             
-        <p>Remitente: <input style="border-radius: 10px; text-align: center;" type="text" name="remitente" pattern="[A-Za-z]{1,15}"></p>
+        
         <p>Destinatario: <input style="border-radius: 10px; text-align: center;" type="text" name="destinatario" pattern="[A-Za-z]{1,15}"></p>
         <p>Mensaje:</p> 
-        <p><textarea name="contenido" id="" cols="10" rows="10" style="text-align: center;"></textarea></p>
+        <p><textarea name="contenido" id="" cols="50" rows="10" style="text-align: center;"></textarea></p>
          
           
         
@@ -34,15 +34,11 @@
 
 {% if request.user.is_authenticated%}
 
+<P><h1>MENSAJES RECIBIDOS</h1></P>
 
     <div style="text-align: center;" >
         <table class="table">
 
-            
-
-            
-           
-                
 
             <tbody>
                 
@@ -53,11 +49,14 @@
                 <p>{{x.contenido}}</p>
                 </div>
             
-            {% endfor %}
+                {% endfor %}
+                
+                    
             
            
                 
             </tbody>
+        
 
 {% else %}
 <p>no hay mensajes</p>

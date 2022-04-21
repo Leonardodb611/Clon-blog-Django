@@ -122,7 +122,7 @@ def mensaje(request):
             print(miFormulario)
             if miFormulario.is_valid():
                 informacion = miFormulario.cleaned_data
-                familiar = Mensajerias (remitente = informacion["remitente"],destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
+                familiar = Mensajerias (destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
                 familiar.save()
                 return render(request, "App/mensajes.html", {"cont_familia":cont_familia,"url": avatares[0].imagen.url})
 
