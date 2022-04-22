@@ -24,7 +24,7 @@
                 {% endif %}
                 <hr>
                 <div style="padding: 5%;">
-                <p>Nombre de usuarioi: {{usuario.username}}</p>
+                <p>Nombre de usuario: {{usuario.username}}</p>
                 <p>Nombre: {{usuario.first_name}}</p>
                 <p>Apellido: {{usuario.last_name}}</p>
                 <p>Email: {{usuario.email}}</p>
@@ -32,9 +32,9 @@
                 
                 <a class="btn btn-outline-light" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
                 <hr>
-                <p> <img src="https://www.flaticon.com/svg/vstatic/svg/6422/6422199.svg?token=exp=1650592386~hmac=6ba8c6dd204713f5e1770ee36cbce17f" style="padding-left:2% ;" width="40px"> <span>{{redes.facebook}}</span></p>
-                <p>{{redes.instagram}}</p>
-                <p>{{redes.twitter}}</p>
+                <p> <img src="/media/avatars/facebook-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.facebook}}</span></p>
+                <p><img src="/media/avatars/instagram-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.instagram}}</span></p>
+                <p><img src="/media/avatars/twitter-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.twitter}}</span></p>
                 <a class="btn btn-outline-light" href="{% url 'Redes'%}">Editar tu informacion!</a>                 
   
               </div>
@@ -49,6 +49,6 @@
 
 
 
-<p><a href="{% url 'Inicio' %}">Volver al inciio</a></p>
+<p><a class="btn btn-outline-secondary border-dark" href="{% url 'Inicio' %}">Volver al inicio</a></p>
     
 {% endblock cambiante %}

@@ -8,7 +8,9 @@
 {% block cambiante %}
 {% if form.errors %}
 
-<p style="color: red;"> Estan mal los datos</p>
+<div class="alert alert-danger">
+    <strong>ERROR!</strong> Los valores completados son incorrectos.
+  </div>
 
 {% endif %}
 
