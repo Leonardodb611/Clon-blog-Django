@@ -4,23 +4,48 @@
 
 
 {% block cambiante %}
-<p><img  src="{{url}}" style="border-radius: 1500px;" width="400px"></p>
-
-{% if request.user.is_superuser %}
-<a class="navbar-brand" href="{% url 'AgregarAvatar'%}">Cambiar tu avatar!</a> 
-<a class="navbar-brand" href="{% url 'BorrarAvatar'%}">borrar tu avatar!</a> 
-{% endif %}
-<p>{{usuario.username}}</p>
-<p>{{usuario.first_name}}</p>
-<p>{{usuario.last_name}}</p>
-<p>{{usuario.email}}</p>
-<a class="navbar-brand" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
-<p>{{redes.facebook}}</p>
-<p>{{redes.instagram}}</p>
-<p>{{redes.twitter}}</p>
-<a class="navbar-brand" href="{% url 'Redes'%}">Editar tu informacion!</a> 
 
 
+<section class="vh-50 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+  
+                
+                <p><img  src="{{url}}" style="border-radius: 1500px;" width="400px"></p>
+
+                {% if request.user.is_superuser %}
+                <a class="btn btn-outline-light" href="{% url 'AgregarAvatar'%}">Cambiar tu avatar!</a> 
+                <a class="btn btn-outline-light" href="{% url 'BorrarAvatar'%}">borrar tu avatar!</a> 
+                {% endif %}
+                <hr>
+                <div style="padding: 5%;">
+                <p>Nombre de usuarioi: {{usuario.username}}</p>
+                <p>Nombre: {{usuario.first_name}}</p>
+                <p>Apellido: {{usuario.last_name}}</p>
+                <p>Email: {{usuario.email}}</p>
+                </div>
+                
+                <a class="btn btn-outline-light" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
+                <hr>
+                <p> <img src="https://www.flaticon.com/svg/vstatic/svg/6422/6422199.svg?token=exp=1650592386~hmac=6ba8c6dd204713f5e1770ee36cbce17f" style="padding-left:2% ;" width="40px"> <span>{{redes.facebook}}</span></p>
+                <p>{{redes.instagram}}</p>
+                <p>{{redes.twitter}}</p>
+                <a class="btn btn-outline-light" href="{% url 'Redes'%}">Editar tu informacion!</a>                 
+  
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 

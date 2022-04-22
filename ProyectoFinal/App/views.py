@@ -145,7 +145,7 @@ def leerblogs(request):
             mensaje = "No hay blogs, disculpe las molestias. Para crear el primero ingrese al sigueinte link."
             return render(request, "App/noBLogs.html", {"mensaje": mensaje, "url": avatares[0].imagen.url})
         else:
-            contexto = {"blogs":blogs, "url": avatares[0].imagen.url}
+            contexto = {"blogs":blogs, "url": avatares[0].imagen.url, "url2": blogs[0].foto.url}
 
             return render (request, "App/blogs.html", contexto)    
     
@@ -155,7 +155,7 @@ def leerblogs(request):
             mensaje = "No hay blogs, disculpe las molestias. Inicia sesion o crea una cuenta para poder escribir tu blog!"
             return render(request, "App/noBLogs.html", {"mensaje": mensaje})
         else:  
-            contexto = {"blogs":blogs}
+            contexto = {"blogs":blogs, "url2": blogs[0].foto.url}
 
             return render (request, "App/blogs.html", contexto) 
 

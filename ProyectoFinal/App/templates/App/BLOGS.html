@@ -9,42 +9,45 @@
 
 <div style="margin: 2%;">
 {% for p in blogs %}
+    
 
-    <li style="border-style: solid; border-width: 1px; list-style: none; margin: 1%; margin-left: 20%; margin-right: 20%;">
-    <p> Titulo: {{p.titulo}}</p>
-    <p> Subtitulo: {{p.subtitulo}}</p>
-    <p> Creador: {{p.creador}}</p>
+<div class="container bcontent  ">
+
+    <h2>{{p.titulo}}</h2>
     
-    
-    {% if request.user.is_authenticated %}
-    <div style="padding: 1%;">
-    <button>
-        <a href="{% url 'Borrarblog' p.id%}">Borrar</a>
-        
-    </button>
-    <button>
-        <a href="{% url 'Editarblog' p.id%}">editar</a>
-    </button>
-    <button>
-        <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
-    </button>
+    <div class="card border border-3 border-dark" style="width: 500px;">
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+                <img class="card-img" src="{{url2}}" alt="Suresh Dasari Card">
+            </div>
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <h3 class="card-title">{{p.subtitulo}}</h3>
+                    <p class="card-text">Creador por: {{p.creador}}</p>
+                    {% if request.user.is_authenticated %}
+                        <div style="padding: 1%;">             
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Borrarblog' p.id%}">Borrar</a>      
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Editarblog' p.id%}">editar</a>       
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>       
+                        </div>      
+                        {% else %}
+                        <div style="padding: 1%;">   
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a> 
+                        </div>
+                        </li>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-        
-    {% else %}
-    <div style="padding: 1%;"> 
-    <button>
-        <a href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>
-    </button>
-    </div>
-    </li>
-    
-    {% endif %}
+</div>
+<hr />
         
         
 {% endfor %}
 </div>
 
 <div>
-<p><a href="{% url 'Crear' %}">Crear blog</a></p>
+<p><a class="btn btn-outline-secondary border-dark" href="{% url 'Crear' %}">Crear blog</a></p>
 </div>    
 {% endblock cambiante %}

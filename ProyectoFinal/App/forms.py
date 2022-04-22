@@ -42,6 +42,6 @@ class AvatarFormulario(forms.Form):
     imagen = forms.ImageField()
 
 class Redessociales(forms.Form):
-    facebook = forms.CharField()
-    instagram = forms.CharField()
-    twitter = forms.CharField()
+    facebook = forms.URLField(initial='http://')
+    instagram = forms.URLField(initial='http://')
+    twitter = forms.URLField(initial='http://')
