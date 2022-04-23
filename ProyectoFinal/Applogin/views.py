@@ -107,9 +107,6 @@ def AgregarRedes(request):
         print(miFormulario1)
 
         usuario = request.user
-
-        
-        
         user = request.user.username
         
         if miFormulario1.is_valid():
@@ -135,7 +132,6 @@ def modificarRedes(request, pk):
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
-
             redes.pagina = informacion["pagina"]
             redes.save()
             return redirect ("/")
@@ -151,9 +147,9 @@ def eliminarRedes( request, pk):
         redes = RedesSociales.objects.get(id=pk)
         redes.delete()
 
-        return redirect ("/App/perfil")
+        return redirect ("/App/profile")
     except Exception as exc:
-        return redirect ("/App/perfil")
+        return redirect ("/App/profile")
 
 def crearRedes(request):
     
@@ -161,22 +157,21 @@ def crearRedes(request):
     
     if request.method == "POST":
 
-        miFormulario1 = Redessociales(request.POST)
+        miFormulario1 = RedessocialesForm(request.POST)
         print(miFormulario1)
 
         usuario = request.user 
-        try:
-            if miFormulario1.is_valid():
-                informacion = miFormulario1.cleaned_data
-                redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
-                redes.save()
-                return redirect("/App/perfil")
-        except:
-            
-            return redirect("/App/perfil")
+        
+        if miFormulario1.is_valid():
+            informacion = miFormulario1.cleaned_data
+            redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
+            redes.save()
+           
+            return redirect("/App/profile")
+        
     else:
 
-        miFormulario1 = Redessociales()
+        miFormulario1 = RedessocialesForm()
     
     return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
 

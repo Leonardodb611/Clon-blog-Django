@@ -93,9 +93,13 @@ def mensaje(request):
             print(miFormulario)
             if miFormulario.is_valid():
                 informacion = miFormulario.cleaned_data
-                mensaje = Mensajerias (destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
-                mensaje.save()
-                return render(request, "App/mensajes.html", {"mensajes":mensajes,"url": avatares[0].imagen.url})
+                mensaje = Mensajerias (remitente=request.user, destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
+                try:
+                    mensaje.save()
+                    return render(request, "App/mensajes.html", {"mensajes":mensajes,"url": avatares[0].imagen.url})
+                except:
+                    mensaje = "EROR! El usuario al que desea enviar el mensaje no existe"
+                    return render(request, "App/mensajes.html", {"mensajes":mensajes,"mensaje":mensaje, "url": avatares[0].imagen.url})
 
 
         
