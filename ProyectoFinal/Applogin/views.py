@@ -179,7 +179,7 @@ def cambiarContrasenia(request):
 
     if request.method == "POST":
         
-        miFormulario = PasswordResetForm(request.user, request.POST)
+        miFormulario = PasswordChangeForm(request.user, request.POST)
 
         if miFormulario.is_valid():
         
@@ -190,7 +190,7 @@ def cambiarContrasenia(request):
             return redirect ("/")
 
     else:
-        miFormulario = PasswordReset(request.user)
+        miFormulario = PasswordChangeForm(request.user)
 
     return render (request, "Applogin/cambiarPass.html", {"miFormulario":miFormulario})
 
