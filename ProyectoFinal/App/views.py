@@ -11,17 +11,13 @@ from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
-
-    
-
-    return render (request, "App/inicio2.html",)
-
+    return render (request, "App/inicioConBlogs.html",)
 #fomulario para crear
 def Crear_Blog(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     if request.method == "POST":
 
-        miFormulario1 = CrearBlog(request.POST, request.FILES)
+        miFormulario1 = CrearBlogForm(request.POST, request.FILES)
         print(miFormulario1)
         
         
@@ -32,38 +28,13 @@ def Crear_Blog(request):
            
            blog.save()
            
-           return render (request, "App/Gracias_blog.html")
+           return render (request, "App/graciasBlog.html")
 
     else:
 
-        miFormulario1 = CrearBlog()
+        miFormulario1 = CrearBlogForm()
     
-    return render (request, "App/crear_Blog.html", {"miFormulario1": miFormulario1 ,"url": avatares[0].imagen.url})
-
-def usuarioFormulario(request):
-
-    avatares = Avatar.objects.filter(user_id=request.user.username)
-    if request.method == "POST":
-
-        miFormulario = UsuarioFormulario(request.POST)
-
-        print(miFormulario)
-
-        if miFormulario.is_valid():
-
-                informacion = miFormulario.cleaned_data
-
-                usuario_nuevo = Usuario (nombre=informacion["nombre"], apellido=informacion["apellido"],email=informacion["email"])
-
-                usuario_nuevo.save()
-
-                return render(request, "App/Gracias_usuario.html", {"url": avatares[0].imagen.url})
-
-    else:
-
-        miFormulario = UsuarioFormulario()
-
-        return render(request, "App/formulario.html", {"miFormulario":miFormulario,"url": avatares[0].imagen.url})
+    return render (request, "App/crearBlog.html", {"miFormulario1": miFormulario1 ,"url": avatares[0].imagen.url})
 
 def random_blog(request):
 
@@ -80,13 +51,13 @@ def random_blog(request):
             
             rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "rfoto":rblog[0].foto.url, "url": avatares[0].imagen.url})
+            return render (request, "App/inicioSinBlogs.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "rfoto":rblog[0].foto.url, "url": avatares[0].imagen.url})
             
 
         else:
 
         
-            return render(request, "App/inicio2.html", {"url": avatares[0].imagen.url})
+            return render(request, "App/inicioConBLogs.html", {"url": avatares[0].imagen.url})
     
     else:
 
@@ -95,45 +66,45 @@ def random_blog(request):
             
             rblog = random.sample(rblog,5)
 
-            return render (request, "App/inicio.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3], "rfoto":rblog[0].foto.url})
+            return render (request, "App/inicioSinBlogs.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2],"rfoto":rblog[4],  "rcreacion":rblog[3], "rfoto":rblog[0].foto.url})
             
 
         else:
 
             
         
-            return render(request, "App/inicio2.html")
+            return render(request, "App/inicioConBLogs.html")
 
 def mensaje(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
-    cont_familia = Mensajerias.objects.all()
+    mensajes = Mensajerias.objects.all()
 
-    cont_familia = Mensajerias.objects.filter(destinatario_id=request.user.username)
+    mensajes = Mensajerias.objects.filter(destinatario_id=request.user.username)
     
-    print("1",cont_familia)
-    print("2", cont_familia)
+    print("1",mensajes)
+    print("2", mensajes)
     
     
 
     if request.method == "POST":
             
-            miFormulario = Mensajeria(request.POST)
+            miFormulario = MensajeriaForm(request.POST)
             print(miFormulario)
             if miFormulario.is_valid():
                 informacion = miFormulario.cleaned_data
-                familiar = Mensajerias (destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
-                familiar.save()
-                return render(request, "App/mensajes.html", {"cont_familia":cont_familia,"url": avatares[0].imagen.url})
+                mensaje = Mensajerias (destinatario_id = informacion["destinatario"],contenido = informacion["contenido"])
+                mensaje.save()
+                return render(request, "App/mensajes.html", {"mensajes":mensajes,"url": avatares[0].imagen.url})
 
 
         
     else:
-            miFormulario = Mensajeria()
+            miFormulario = MensajeriaForm()
         
-            return render (request, "App/mensajes.html", {"miFormulario":miFormulario, "cont_familia":cont_familia,"url": avatares[0].imagen.url})
+            return render (request, "App/mensajes.html", {"miFormulario":miFormulario, "mensajes":mensajes,"url": avatares[0].imagen.url})
 
-    return  render(request, "App/mensajes.html", {"cont_familia":cont_familia,"url": avatares[0].imagen.url})
+    return  render(request, "App/mensajes.html", {"mensajes":mensajes,"url": avatares[0].imagen.url})
         
 def leerblogs(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -192,23 +163,23 @@ def modificarBlogs(request, pk):
 
         miFormulario = CrearBlog(initial={"titulo":blogs.titulo,"subtitulo":blogs.subtitulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
 
-    return render (request, "App/editarblog.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
+    return render (request, "App/editarBlog.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 
 def blogEspecifico(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
-    blogs = Blog.objects.get(id=pk)
+    blogEspecifico = Blog.objects.get(id=pk)
     
     if request.user.is_authenticated:
 
-        contexto = {"blogs":blogs , "url": avatares[0].imagen.url, "url2": blogs.foto.url}
+        contexto = {"blogEspecifico":blogEspecifico , "url": avatares[0].imagen.url, "url2": blogEspecifico.foto.url}
 
-        return render (request, "App/blogespecifico.html", contexto)
+        return render (request, "App/blogEspecifico.html", contexto)
     
     else:
 
-        contexto = {"blogs":blogs}
+        contexto = {"blogEspecifico":blogEspecifico}
 
-        return render (request, "App/blogespecifico.html", contexto)
+        return render (request, "App/blogEspecifico.html", contexto)
 
 def foto(request):
     
@@ -258,8 +229,6 @@ def PerfilUsuario(request):
     
 
     return render (request, "App/PerfilUsuario.html", contexto)
-
-
 
 def About(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)

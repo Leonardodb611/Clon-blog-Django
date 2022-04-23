@@ -4,27 +4,6 @@ from django.contrib.auth.models import  User
 from ckeditor.fields import RichTextField
 
 # Create your models here.
-class Usuario(models.Model):
-   
-    nombre = models.CharField(max_length=40)
-    apellido = models.CharField(max_length=40)
-    email = models.EmailField(primary_key=True)
-    password = models.CharField (max_length=12)
-
-class Productos (models.Model):
-
-    id = models.AutoField(primary_key=True)
-    producto = models.CharField(max_length=40)
-    categoria = models.CharField(max_length=40)
-    precio = models.IntegerField()
-    
-
-class Administradores(models.Model):
-
-    nombre = models.CharField(max_length=40)
-    apellido = models.CharField(max_length=40)
-    email = models.EmailField(primary_key=True)
-    password = models.CharField (max_length=12)
 
 class Blog(models.Model):
 

@@ -7,7 +7,6 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from Applogin.forms import *
 from Applogin.models import *
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
@@ -15,24 +14,6 @@ from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
-def register(request):
-    if request.method == "POST":
-
-        form = UserRegisterForm(request.POST)
-
-        if form.is_valid():
-
-            username = form.cleaned_data["username"]
-            
-            form.save()
-            
-            return redirect ("/")
-
-
-    else:
-        form = UserRegisterForm()
-
-    return render(request, "Applogin/registro.html", {"form":form})
 
 
 
@@ -75,34 +56,6 @@ def login_request (request):
 
     return render(request, "Applogin/login.html", {"form":form})
 
-def editarPerfil(request):
-
-    usuario = request.user
-
-    if request.method == "POST":
-
-        miFormulario = UserEditForm(request.POST)
-        miFormulario2 = AvatarFormulario(request.POST, request.FILES)
-
-        if miFormulario.is_valid():
-
-            informacion = miFormulario.cleaned_data
-
-            usuario.email = informacion["email"]
-            usuario.first_name = informacion["first_name"]
-            usuario.last_name = informacion["last_name"]
-            usuario.password1 = informacion["password1"]
-            usuario.passwprd2 = informacion["password2"]
-            usuario.save()
-
-            return redirect ("/")
-    
-    else:
-        miFormulario = UserEditForm(initial={"email":usuario.email})
-        miFormulario2 = AvatarFormulario()
-
-    return render(request, "App/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
-
 def agregarAvatar(request):
     
     
@@ -144,14 +97,13 @@ def BorrarAvatar(request):
 
     return redirect ("/")
 
-
 def AgregarRedes(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
     if request.method == "POST":
 
-        miFormulario1 = Redessociales(request.POST)
+        miFormulario1 = RedessocialesForm(request.POST)
         print(miFormulario1)
 
         usuario = request.user
@@ -170,7 +122,7 @@ def AgregarRedes(request):
 
     else:
 
-        miFormulario1 = Redessociales()
+        miFormulario1 = RedessocialesForm()
     
     return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
          
@@ -179,7 +131,7 @@ def modificarRedes(request, pk):
     redes = RedesSociales.objects.get(id=pk)
 
     if request.method == "POST":
-        miFormulario = Redessociales(request.POST)
+        miFormulario = RedessocialesForm(request.POST)
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
@@ -189,7 +141,7 @@ def modificarRedes(request, pk):
             return redirect ("/")
     else:
 
-        miFormulario = Redessociales(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
+        miFormulario = RedessocialesForm(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
 
     return render (request, "Applogin/editarRedes.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 

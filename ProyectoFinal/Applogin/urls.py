@@ -4,14 +4,14 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth import views as auth_views
 urlpatterns = [
 
-    path("register", views.register, name="register"),
+    
     path("login", views.login_request, name = "login"),
     path("logout", LogoutView.as_view(template_name="Applogin/gracias.html"), name = "logout"),
     path("Avatar", views.agregarAvatar, name="AgregarAvatar" ),
-    path("BorrarAvatar", views.BorrarAvatar, name="BorrarAvatar"),
+    path("deleteAvatar", views.BorrarAvatar, name="BorrarAvatar"),
     path("redes", views.AgregarRedes, name="Redes"),
-    path("crearredes", views.crearRedes, name="crearRedes"),
-    path("editarRedes/<pk>", views.modificarRedes, name="EditarRedes" ),
-    path("eliminarRedes/<pk>", views.eliminarRedes, name="EliminarRedes"),
-    path("cambiarpass", views.cambiarContrasenia, name="resetPass")
+    path("createRedes", views.crearRedes, name="crearRedes"),
+    path("editRedes/<pk>", views.modificarRedes, name="EditarRedes" ),
+    path("delRedes/<pk>", views.eliminarRedes, name="EliminarRedes"),
+    path("changePassword", views.cambiarContrasenia, name="resetPass")
 ]

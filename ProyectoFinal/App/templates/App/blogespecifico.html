@@ -12,21 +12,21 @@
     <div class="card border border-3 border-dark" style="width: 80%; margin: 1%;" >
         <div class="row no-gutters">
             <div class="col-sm-3">
-                <img class="card-img" src="{{blogs.foto.url}}" width="50px" height="100px"  style=" margin-top: 18%; margin-left: 10%; ">
+                <img class="card-img" src="{{blogEspecifico.foto.url}}" width="50px" height="100px"  style=" margin-top: 18%; margin-left: 10%; ">
             </div>
             <div class="col-sm-7">
                 <div class="card-body">
-                    <h1 class="card-title">{{blogs.titulo}}</h1>
-                    <h4 class="card-title">{{blogs.subtitulo}}</h4>
-                    <p class="card-text">Creador por: {{blogs.creador}}</p>
-                    <p class="card-text">Creador por: {{blogs.creacion}}</p>
+                    <h1 class="card-title">{{blogEspecifico.titulo}}</h1>
+                    <h4 class="card-title">{{blogEspecifico.subtitulo}}</h4>
+                    <p class="card-text">Creador por: {{blogEspecifico.creador}}</p>
+                    <p class="card-text">Creador por: {{blogEspecifico.creacion}}</p>
                     
                 </div>
                 <hr>
             </div>
             <div style="padding-left: 5%; padding-right: 5%; padding-bottom: 5%;">
 
-            <p>{{blogs.contenido| safe}}</p>
+            <p>{{blogEspecifico.contenido| safe}}</p>
             </div>
         </div>
     </div>

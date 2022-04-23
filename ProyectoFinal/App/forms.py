@@ -11,7 +11,7 @@ class UsuarioFormulario(forms.Form):
     email = forms.EmailField()
     
 
-class CrearBlog(forms.Form):
+class CrearBlogForm(forms.Form):
 
     titulo = forms.CharField(max_length=40)
     subtitulo = forms.CharField(max_length=40)
@@ -19,7 +19,7 @@ class CrearBlog(forms.Form):
     foto = forms.ImageField()
     
 
-class Mensajeria(forms.Form):
+class MensajeriaForm(forms.Form):
     
     
     destinatario = forms.CharField(max_length=40)
@@ -41,7 +41,3 @@ class UserEditForm(UserCreationForm):
 class AvatarFormulario(forms.Form):
     imagen = forms.ImageField()
 
-class Redessociales(forms.Form):
-    facebook = forms.URLField(initial='http://')
-    instagram = forms.URLField(initial='http://')
-    twitter = forms.URLField(initial='http://')
