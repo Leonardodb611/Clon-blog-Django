@@ -179,7 +179,7 @@ def cambiarContrasenia(request):
 
     if request.method == "POST":
         
-        miFormulario = PasswordReset(request.user, request.POST)
+        miFormulario = PasswordResetForm(request.user, request.POST)
 
         if miFormulario.is_valid():
         
