@@ -163,12 +163,14 @@ def crearRedes(request):
         usuario = request.user 
         
         if miFormulario1.is_valid():
-            informacion = miFormulario1.cleaned_data
-            redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
-            redes.save()
-           
-            return redirect("/App/profile")
-        
+            try:
+                informacion = miFormulario1.cleaned_data
+                redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
+                redes.save()
+            
+                return redirect("/App/profile")
+            except:
+                return redirect("/App/profile")
     else:
 
         miFormulario1 = RedessocialesForm()
