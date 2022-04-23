@@ -1,0 +1,26 @@
+{% extends 'App/padre.html' %}
+
+{% load static %}
+
+
+{% block cambiante %}
+
+<p><h3>Edita tu blog!</h3></p>
+
+    
+{% if miFormulario1.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+
+    
+    {{miFormulario.as_p}}
+
+    <input type="submit", value="Enviar">
+
+</form>
+    
+{% endblock cambiante %}

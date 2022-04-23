@@ -9,12 +9,14 @@
 
 
 
+
 {% if miFormulario1.errors %}
 
-<p style="color: red;"> Estan mal los datos</p>
+<div class="alert alert-danger">
+    <strong>ERROR!</strong> Los valores completados son incorrectos.
+  </div>
 
 {% endif %}
-
 
     <form action="" method="POST">{% csrf_token %}
 
@@ -31,19 +33,13 @@
                         <p class="text-white-50 mb-5">Para registrarse complete los siguientes datos!</p>
         
                         <div class="form-outline form-white mb-4">
-                        <input type="text" name="facebook" class="form-control form-control-lg" />
-                        <label class="form-label" for="typeEmailX">Facebook</label>
+                        <input type="text" name="pagina" class="form-control form-control-lg" />
+                        <label class="form-label" for="typeEmailX">Pagina de contacto</label>
                         </div>
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="text" name="twitter" class="form-control form-control-lg" />
-                            <label class="form-label" for="typeEmailX">Twitter</label>
-                        </div>
+                        
         
-                        <div class="form-outline form-white mb-4">
-                        <input type="text"  name="instagram" class="form-control form-control-lg" />
-                        <label class="form-label" for="typePasswordX">Instagram</label>
-                        </div>
+                        
                         
         
         

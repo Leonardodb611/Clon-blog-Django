@@ -18,17 +18,19 @@
     <div class="card border border-3 border-dark" style="width: 500px;">
         <div class="row no-gutters">
             <div class="col-sm-5">
-                <img class="card-img" src="{{url2}}" alt="Suresh Dasari Card">
+                <img class="card-img" src="{{p.foto.url}}" width="50px" height="150px" style="padding: 1%;">
             </div>
             <div class="col-sm-7">
                 <div class="card-body">
                     <h3 class="card-title">{{p.subtitulo}}</h3>
                     <p class="card-text">Creador por: {{p.creador}}</p>
                     {% if request.user.is_authenticated %}
-                        <div style="padding: 1%;">             
+                        <div style="padding: 1%;">   
+                                      
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Borrarblog' p.id%}">Borrar</a>      
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Editarblog' p.id%}">editar</a>       
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>       
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>  
+                                <p></p>     
                         </div>      
                         {% else %}
                         <div style="padding: 1%;">   

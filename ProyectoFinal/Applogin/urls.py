@@ -9,4 +9,7 @@ urlpatterns = [
     path("Avatar", views.agregarAvatar, name="AgregarAvatar" ),
     path("BorrarAvatar", views.BorrarAvatar, name="BorrarAvatar"),
     path("redes", views.AgregarRedes, name="Redes"),
+    path("crearredes", views.crearRedes, name="crearRedes"),
+    path("editarRedes/<pk>", views.modificarRedes, name="EditarRedes" ),
+    path("eliminarRedes/<pk>", views.eliminarRedes, name="EliminarRedes"),
 ]

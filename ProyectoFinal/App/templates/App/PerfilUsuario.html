@@ -32,11 +32,23 @@
                 
                 <a class="btn btn-outline-light" href="{% url 'EditarPerfil'%}">Editar tu informacion!</a> 
                 <hr>
-                <p> <img src="/media/avatars/facebook-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.facebook}}</span></p>
-                <p><img src="/media/avatars/instagram-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.instagram}}</span></p>
-                <p><img src="/media/avatars/twitter-free-icon-font.png" style="padding-left:2% ;" width="40px"> <span style="margin-left: 1%;">{{redes.twitter}}</span></p>
-                <a class="btn btn-outline-light" href="{% url 'Redes'%}">Editar tu informacion!</a>                 
-  
+              
+                <p>Pagina de contacto</p>
+                
+                
+                  
+                
+                {% for x in redes %}
+                  
+                
+                
+                <p>{{x.pagina}}</p>
+                  
+                  <a class="btn btn-outline-light" href="{% url 'EliminarRedes' x.id%}">Borrar</a> 
+                
+                  {% endfor %}
+                  
+                  <a class="btn btn-outline-light" href="{% url 'crearRedes'%}">Agregar</a> 
               </div>
   
   

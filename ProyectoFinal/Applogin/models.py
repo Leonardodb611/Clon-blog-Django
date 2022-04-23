@@ -13,9 +13,7 @@ class Avatar(models.Model):
 
 class RedesSociales(models.Model):
     user = models.OneToOneField(User, to_field="username", on_delete=models.CASCADE)
-    facebook = models.CharField(max_length=500, null=True,  blank=True)
-    instagram = models.CharField(max_length=500, null=True,  blank=True)
-    twitter = models.CharField(max_length=500, null=True,  blank=True)
+    pagina = models.URLField(blank=True, null=True)
 
 
     def __str__(self):

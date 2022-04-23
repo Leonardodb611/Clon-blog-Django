@@ -145,7 +145,7 @@ def leerblogs(request):
             mensaje = "No hay blogs, disculpe las molestias. Para crear el primero ingrese al sigueinte link."
             return render(request, "App/noBLogs.html", {"mensaje": mensaje, "url": avatares[0].imagen.url})
         else:
-            contexto = {"blogs":blogs, "url": avatares[0].imagen.url, "url2": blogs[0].foto.url}
+            contexto = {"blogs":blogs, "url": avatares[0].imagen.url}
 
             return render (request, "App/blogs.html", contexto)    
     
@@ -181,6 +181,7 @@ def modificarBlogs(request, pk):
             informacion = miFormulario.cleaned_data
 
             blogs.titulo = informacion["titulo"]
+            blogs.subtitulo = informacion["subtitulo"]
             blogs.contenido = informacion["contenido"]
             blogs.foto = informacion["foto"]
         
@@ -189,7 +190,7 @@ def modificarBlogs(request, pk):
             return redirect ("/")
     else:
 
-        miFormulario = CrearBlog(initial={"titulo":blogs.titulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
+        miFormulario = CrearBlog(initial={"titulo":blogs.titulo,"subtitulo":blogs.subtitulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
 
     return render (request, "App/editarblog.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 
@@ -250,7 +251,7 @@ def PerfilUsuario(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
     usuario = User.objects.get(username=request.user.username)
-    redes = RedesSociales.objects.get(user=request.user.username)
+    redes = RedesSociales.objects.filter(user=request.user.username)
 
     contexto = {"usuario":usuario, "url": avatares[0].imagen.url, "redes":redes}
 
@@ -261,4 +262,6 @@ def PerfilUsuario(request):
 
 
 def About(request):
-    return render (request, "App/About.html")
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    return render (request, "App/About.html", {"url":avatares[0].imagen.url})
+

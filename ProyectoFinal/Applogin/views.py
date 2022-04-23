@@ -153,13 +153,13 @@ def AgregarRedes(request):
 
         usuario = request.user
 
-        red = RedesSociales.objects.filter(user=usuario)
+        
         
         user = request.user.username
         
         if miFormulario1.is_valid():
            informacion = miFormulario1.cleaned_data
-           redes = RedesSociales(user=usuario, facebook=informacion['facebook'], twitter=informacion['twitter'],instagram=informacion['instagram'])
+           redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
            redes.save()
            avatar = Avatar(user=usuario, imagen="avatars/no-avatar.png")
            avatar.save()
@@ -171,6 +171,56 @@ def AgregarRedes(request):
     
     return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
          
+def modificarRedes(request, pk):
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    redes = RedesSociales.objects.get(id=pk)
 
+    if request.method == "POST":
+        miFormulario = Redessociales(request.POST)
 
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
 
+            redes.pagina = informacion["pagina"]
+            redes.save()
+            return redirect ("/")
+    else:
+
+        miFormulario = Redessociales(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
+
+    return render (request, "Applogin/editarRedes.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
+
+def eliminarRedes( request, pk):
+    
+    try:
+        redes = RedesSociales.objects.get(id=pk)
+        redes.delete()
+
+        return redirect ("/App/perfil")
+    except Exception as exc:
+        return redirect ("/App/perfil")
+
+def crearRedes(request):
+    
+    avatares = Avatar.objects.filter(user_id=request.user.username)
+    
+    if request.method == "POST":
+
+        miFormulario1 = Redessociales(request.POST)
+        print(miFormulario1)
+
+        usuario = request.user 
+        try:
+            if miFormulario1.is_valid():
+                informacion = miFormulario1.cleaned_data
+                redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
+                redes.save()
+                return redirect("/App/perfil")
+        except:
+            
+            return redirect("/App/perfil")
+    else:
+
+        miFormulario1 = Redessociales()
+    
+    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
