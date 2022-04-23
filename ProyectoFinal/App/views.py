@@ -232,5 +232,8 @@ def PerfilUsuario(request):
 
 def About(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
-    return render (request, "App/About.html", {"url":avatares[0].imagen.url})
+    if request.user.is_authenticated:
+        return render (request, "App/About.html", {"url":avatares[0].imagen.url})
+    else:
+        return render (request, "App/About.html")
 
