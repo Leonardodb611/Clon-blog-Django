@@ -7,8 +7,11 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from Applogin.forms import *
 from Applogin.models import *
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 # Create your views here.
@@ -224,3 +227,25 @@ def crearRedes(request):
         miFormulario1 = Redessociales()
     
     return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
+
+def cambiarContrasenia(request):
+
+    if request.method == "POST":
+        
+        miFormulario = PasswordReset(request.user, request.POST)
+
+        if miFormulario.is_valid():
+        
+            user = miFormulario.save()
+
+            update_session_auth_hash(request, user)
+    
+            return redirect ("/")
+
+    else:
+        miFormulario = PasswordReset(request.user)
+
+    return render (request, "Applogin/cambiarPass.html", {"miFormulario":miFormulario})
+
+    
+   

@@ -4,7 +4,14 @@
 
 
 {% block cambiante %}
+{% if miFormu.errors %}
 
+
+<div class="alert alert-danger">
+  <strong>ERROR!</strong> Los valores completados son incorrectos.
+</div>
+
+{% endif %}
   <form action="" method="POST">{% csrf_token %}
 
         <article>

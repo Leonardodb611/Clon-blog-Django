@@ -1,6 +1,7 @@
 from django.urls import path
 from Applogin import views
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
 urlpatterns = [
 
     path("register", views.register, name="register"),
@@ -12,4 +13,5 @@ urlpatterns = [
     path("crearredes", views.crearRedes, name="crearRedes"),
     path("editarRedes/<pk>", views.modificarRedes, name="EditarRedes" ),
     path("eliminarRedes/<pk>", views.eliminarRedes, name="EliminarRedes"),
+    path("cambiarpass", views.cambiarContrasenia, name="resetPass")
 ]

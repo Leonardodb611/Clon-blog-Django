@@ -28,13 +28,13 @@
                         <div style="padding: 1%;">   
                                       
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Borrarblog' p.id%}">Borrar</a>      
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Editarblog' p.id%}">editar</a>       
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Editarblog' p.id%}">Editar</a>       
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>  
                                 <p></p>     
                         </div>      
                         {% else %}
                         <div style="padding: 1%;">   
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a> 
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas</a> 
                         </div>
                         </li>
                         {% endif %}

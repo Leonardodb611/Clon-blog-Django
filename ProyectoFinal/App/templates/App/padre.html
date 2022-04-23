@@ -30,10 +30,11 @@
                         {% if request.user.is_authenticated %}
                                       
                         <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
-                        <a class="navbar-brand" href="{% url 'Crear'%}">Crear Blog</a>
-                        <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>      
+                        <a class="navbar-brand" href="{% url 'Crear'%}">Nuevo Blog</a>
+                        <a class="navbar-brand" href="{% url 'leerblogs'%}">Blogs</a>      
                         <a class="navbar-brand" href="{% url 'Perfil'%}">Perfil</a>
                         <a class="navbar-brand" href="{% url 'About'%}">Sobre mi</a>  
+                        
                         
                     
                         {% endif %}
@@ -45,7 +46,7 @@
                         <center>
                         {% if not request.user.is_authenticated %}
                             <a class="navbar-brand" href="{% url 'Inicio'%}">Inicio</a>
-                            <a class="navbar-brand" href="{% url 'leerblogs'%}">blogs</a>
+                            <a class="navbar-brand" href="{% url 'leerblogs'%}">Blogs</a>
                             <a class="navbar-brand" href="{% url 'About'%}">Sobre mi</a>  
                             <a class="navbar-brand" href="{% url 'register'%}">Registro</a>
                             <a class="navbar-brand "  href="{% url 'login'%}">Iniciar sesion</a>
@@ -54,7 +55,7 @@
                         
                             <div >
                             <p><p class="navbar-brand"><img style="border-radius: 1500px;" src="{{url}}" width="40px"> {{request.user.username}}</p>
-                            <p class="navbar-brand" style=" padding-top: 15px; margin-right: 20px; padding: 5px; "> <a class="btn btn-outline-light"  href="{% url 'mensajeria'%}">Mensajes <a class="btn btn-outline-light"  href="{% url 'logout'%}">Logout</a></a></p>
+                            <p class="navbar-brand" style=" padding-top: 15px; margin-right: 20px; padding: 5px; "> <a style="margin-right: 10px;" class="btn btn-outline-light"  href="{% url 'mensajeria'%}">Mensajes <a class="btn btn-outline-light"  href="{% url 'logout'%}">Logout</a></a></p>
                             
                             
                             

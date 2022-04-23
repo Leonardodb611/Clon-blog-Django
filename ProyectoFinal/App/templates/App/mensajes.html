@@ -5,10 +5,12 @@
 
 {% block cambiante %}
 
-<P><h3>Bienvenido a mi pagina!</h3></P>
+
 <div>
     {% if miFormulario.errors %}
-     <p style="color: red"> Hay problemas con los datos cargados</p>
+    <div class="alert alert-danger">
+        <strong>ERROR!</strong> Los valores completados son incorrectos.
+      </div>
     {% endif %}
         
 
@@ -18,14 +20,48 @@
             
             
         
-        <p>Destinatario: <input style="border-radius: 10px; text-align: center;" type="text" name="destinatario" pattern="[A-Za-z]{1,15}"></p>
-        <p>Mensaje:</p> 
-        <p><textarea name="contenido" id="" cols="50" rows="10" style="text-align: center;"></textarea></p>
-         
-          
-        
-
-        <input type="submit" value="Enviar mensaje">
+        <article>
+            <!-- Post header-->
+            <section class=" gradient-custom">
+                <div class="container py-3 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-4 text-center">
+            
+                        <div class="mb-md-5 mt-md-4 pb-4">
+                            
+                        
+                            <h2 class="fw-bold mb-2 text-uppercase">Mensajes</h2>
+                            <p class="text-white-50 mb-5">Por favor complete la informacion para enviar un mensaje!</p>
+            
+                            <div class="form-outline form-white mb-4">
+                                <p><label class="form-label" for="typeEmailX">Destinatario:</label></p>
+                            <input type="text" name="destinatario" class="form-control form-control-lg" />
+                            
+                            </div>
+                            <hr>
+                            <div class="form-outline form-white mb-4">
+                                <p><label class="form-label" for="typeEmailX">Mensaje:</label></p>
+                                <textarea name="contenido" id="" cols="60" rows="10"></textarea>
+                                
+                            </div>
+                            
+            
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Enviar</button>
+            
+                
+            
+                        </div>
+            
+            
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+        </article>
     </form>
 
 </div>
@@ -43,11 +79,35 @@
             <tbody>
                 
                 {% for x in cont_familia %}
-                <div style="border-style: solid; border-width: 3px;  margin-left: 20%; margin-right: 20%; margin-bottom: 1%; padding: 1%;">
-                <p>Mensaje de: {{x.remitente}}</p>
-                <p>{{x.destinatario}}</p>
-                <p>{{x.contenido}}</p>
-                </div>
+                <section class=" gradient-custom">
+                    <div class="container py-3 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body  text-center">
+                
+                            <div class="mb-md-5 mt-md-4">
+                                
+                                <div class="form-outline form-white mb-4">
+                                    <p><label class="form-label" for="typeEmailX">Remitente:</label></p>
+                                    <p><label class="form-label" for="typeEmailX">{{x.remitente}}</label></p>
+                        
+                                </div>
+                                <hr>
+                                <div class="form-outline form-white mb-4">
+                                    <p><label class="form-label" for="typeEmailX">Mensaje:</label></p>
+                                    <p><label class="form-label" for="typeEmailX">{{x.contenido}}</label></p>  
+                                </div>
+            
+                            </div>
+                
+                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
             
                 {% endfor %}
                 
@@ -56,17 +116,14 @@
            
                 
             </tbody>
-        
+            
+            
 
 {% else %}
 <p>no hay mensajes</p>
 
 {% endif %}
 
-        </table>
-    </div>
-
-
-
+    
     
 {% endblock cambiante %}
