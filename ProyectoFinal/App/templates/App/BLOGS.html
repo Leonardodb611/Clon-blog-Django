@@ -49,7 +49,12 @@
 {% endfor %}
 </div>
 
+{% if request.user.is_authenticated %}
 <div>
-<p><a class="btn btn-outline-secondary border-dark" href="{% url 'Crear' %}">Crear blog</a></p>
-</div>    
+    <p><a class="btn btn-outline-secondary border-dark" href="{% url 'Crear' %}">Crear blog</a></p>
+    </div>    
+    
+{% endif %}
+    
+  
 {% endblock cambiante %}

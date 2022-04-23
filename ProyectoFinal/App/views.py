@@ -150,7 +150,7 @@ def modificarBlogs(request, pk):
     blogs = Blog.objects.get(id=pk)
 
     if request.method == "POST":
-        miFormulario = CrearBlog(request.POST, request.FILES)
+        miFormulario = CrearBlogForm(request.POST, request.FILES)
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
@@ -165,7 +165,7 @@ def modificarBlogs(request, pk):
             return redirect ("/")
     else:
 
-        miFormulario = CrearBlog(initial={"titulo":blogs.titulo,"subtitulo":blogs.subtitulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
+        miFormulario = CrearBlogForm(initial={"titulo":blogs.titulo,"subtitulo":blogs.subtitulo, "contenido":blogs.contenido, "url": avatares[0].imagen.url})
 
     return render (request, "App/editarBlog.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 
