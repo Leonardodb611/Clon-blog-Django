@@ -170,6 +170,7 @@ def crearRedes(request):
             
                 return redirect("/App/profile")
             except:
+                
                 return redirect("/App/profile")
     else:
 

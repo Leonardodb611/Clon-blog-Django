@@ -4,12 +4,7 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 
-class UsuarioFormulario(forms.Form):
 
-    nombre = forms.CharField()
-    apellido = forms.CharField()
-    email = forms.EmailField()
-    
 
 class CrearBlogForm(forms.Form):
 

@@ -16,7 +16,7 @@
               <div class="mb-md-5 mt-md-4 pb-5">
   
                 
-                <p><img  src="{{url}}" style="border-radius: 1500px;" width="400px"></p>
+                <p><img  class="img-fluid rounded-circle mb-4 border border-3 border-light" src="{{url}}" width="250px"  ></p>
 
                 {% if request.user.is_superuser %}
                 <a class="btn btn-outline-light" href="{% url 'AgregarAvatar'%}">Cambia tu avatar!</a> 
@@ -46,10 +46,13 @@
                 <p>{{x.pagina}}</p>
                   
                   <a class="btn btn-outline-light" href="{% url 'EliminarRedes' x.id%}">Borrar pagina</a> 
-                
+                  <a class="btn btn-outline-light" href="{% url 'EditarRedes' x.id%}">Modificar pagina</a>
                 {% endfor %}
+
+                  <hr>
                   
-                  <a class="btn btn-outline-light" href="{% url 'crearRedes'%}">Agrega pagina</a> 
+                  <p style="margin: 2%;"><a class="btn btn-outline-light" href="{% url 'crearRedes'%}">Agrega pagina</a></p>
+                  <p style="font-size: 13px;">(Para agregar mas redes borre la anterior)</p>
               </div>
   
   
