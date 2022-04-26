@@ -21,7 +21,7 @@ class Blog(models.Model):
 
         return f"{self.titulo, self.id, self.creador, self.contenido}"
     
-class Mensajerias(models.Model):
+class Mensajes(models.Model):
     
     remitente = models.CharField(max_length=40)
     destinatario = models.ForeignKey(User, to_field="username", on_delete=models.CASCADE)

@@ -6,7 +6,7 @@ from ckeditor.widgets import CKEditorWidget
 
 
 
-class CrearBlogForm(forms.Form):
+class CrearBlogFormulario(forms.Form):
 
     titulo = forms.CharField(max_length=40)
     subtitulo = forms.CharField(max_length=40)
@@ -14,7 +14,7 @@ class CrearBlogForm(forms.Form):
     foto = forms.ImageField()
     
 
-class MensajeriaForm(forms.Form):
+class MensajesFormulario(forms.Form):
     
     
     destinatario = forms.CharField(max_length=40)

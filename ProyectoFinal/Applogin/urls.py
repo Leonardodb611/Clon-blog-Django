@@ -6,12 +6,12 @@ urlpatterns = [
 
     
     path("login", views.login_request, name = "login"),
-    path("logout", LogoutView.as_view(template_name="Applogin/gracias.html"), name = "logout"),
-    path("Avatar", views.agregarAvatar, name="AgregarAvatar" ),
-    path("deleteAvatar", views.BorrarAvatar, name="BorrarAvatar"),
-    path("redes", views.AgregarRedes, name="Redes"),
-    path("createRedes", views.crearRedes, name="crearRedes"),
-    path("editRedes/<pk>", views.modificarRedes, name="EditarRedes" ),
-    path("delRedes/<pk>", views.eliminarRedes, name="EliminarRedes"),
-    path("changePassword", views.cambiarContrasenia, name="resetPass")
+    path("logout", LogoutView.as_view(template_name="Applogin/gracias_logout.html"), name = "logout"),
+    path("Avatar", views.agregar_avatar, name="AgregarAvatar" ),
+    path("deleteAvatar", views.borrar_avatar, name="BorrarAvatar"),
+    path("redes", views.agregar_redes, name="Redes"),
+    path("createRedes", views.crear_redes, name="crearRedes"),
+    path("editRedes/<pk>", views.modificar_redes, name="EditarRedes" ),
+    path("delRedes/<pk>", views.eliminar_redes, name="EliminarRedes"),
+    path("changePassword", views.cambiar_contrasenia, name="resetPass")
 ]

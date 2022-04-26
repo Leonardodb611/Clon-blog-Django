@@ -43,7 +43,7 @@ def login_request (request):
 
                 else:
                     login(request, user)
-                    return render ( request, "App/redireccion_redes.html")
+                    return render ( request, "Applogin/redireccion_redes.html")
 
             else:
                 return render(request, "Applogin/login.html", {"form":form})
@@ -56,7 +56,7 @@ def login_request (request):
 
     return render(request, "Applogin/login.html", {"form":form})
 
-def agregarAvatar(request):
+def agregar_avatar(request):
     
     
     if request.method == "POST":
@@ -85,9 +85,9 @@ def agregarAvatar(request):
 
         formulario = AvatarFormulario()
 
-    return render(request, "Applogin/agregarAvatar.html", {"form": formulario})
+    return render(request, "Applogin/agregar_avatar.html", {"form": formulario})
 
-def BorrarAvatar(request):
+def borrar_avatar(request):
 
     usuario = request.user
 
@@ -97,13 +97,13 @@ def BorrarAvatar(request):
 
     return redirect ("/")
 
-def AgregarRedes(request):
+def agregar_redes(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
     if request.method == "POST":
 
-        miFormulario1 = RedessocialesForm(request.POST)
+        miFormulario1 = RedesSocialesFormulario(request.POST)
         print(miFormulario1)
 
         usuario = request.user
@@ -119,16 +119,16 @@ def AgregarRedes(request):
 
     else:
 
-        miFormulario1 = RedessocialesForm()
+        miFormulario1 = RedesSocialesFormulario()
     
-    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
+    return render (request, "Applogin/agregar_redes.html", {"miFormulario1": miFormulario1})
          
-def modificarRedes(request, pk):
+def modificar_redes(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     redes = RedesSociales.objects.get(id=pk)
 
     if request.method == "POST":
-        miFormulario = RedessocialesForm(request.POST)
+        miFormulario = RedesSocialesFormulario(request.POST)
 
         if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
@@ -137,11 +137,11 @@ def modificarRedes(request, pk):
             return redirect ("/")
     else:
 
-        miFormulario = RedessocialesForm(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
+        miFormulario = RedesSocialesFormulario(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
 
-    return render (request, "Applogin/editarRedes.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
+    return render (request, "Applogin/editar_redes.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
 
-def eliminarRedes( request, pk):
+def eliminar_redes( request, pk):
     
     try:
         redes = RedesSociales.objects.get(id=pk)
@@ -151,13 +151,13 @@ def eliminarRedes( request, pk):
     except Exception as exc:
         return redirect ("/App/profile")
 
-def crearRedes(request):
+def crear_redes(request):
     
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
     if request.method == "POST":
 
-        miFormulario1 = RedessocialesForm(request.POST)
+        miFormulario1 = RedesSocialesFormulario(request.POST)
         print(miFormulario1)
 
         usuario = request.user 
@@ -174,11 +174,11 @@ def crearRedes(request):
                 return redirect("/App/profile")
     else:
 
-        miFormulario1 = RedessocialesForm()
+        miFormulario1 = RedesSocialesFormulario()
     
-    return render (request, "App/Agregar_redes.html", {"miFormulario1": miFormulario1})
+    return render (request, "Applogin/agregar_redes.html", {"miFormulario1": miFormulario1})
 
-def cambiarContrasenia(request):
+def cambiar_contrasenia(request):
 
     if request.method == "POST":
         
@@ -195,7 +195,7 @@ def cambiarContrasenia(request):
     else:
         miFormulario = PasswordChangeForm(request.user)
 
-    return render (request, "Applogin/cambiarPass.html", {"miFormulario":miFormulario})
+    return render (request, "Applogin/cambiar_pass.html", {"miFormulario":miFormulario})
 
     
    

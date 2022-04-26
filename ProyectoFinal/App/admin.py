@@ -5,7 +5,7 @@ from .models import *
 
 admin.site.register(Blog)
 
-admin.site.register(Mensajerias)
+admin.site.register(Mensajes)
 
 
 
