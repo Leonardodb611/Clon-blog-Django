@@ -16,7 +16,7 @@ from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
 
-
+#Vista para logearse
 def login_request (request):
     
     error = "datos erroneos"
@@ -56,6 +56,8 @@ def login_request (request):
 
     return render(request, "Applogin/login.html", {"form":form})
 
+
+#~Vista para agregar un avatar
 def agregar_avatar(request):
     
     
@@ -87,6 +89,7 @@ def agregar_avatar(request):
 
     return render(request, "Applogin/agregar_avatar.html", {"form": formulario})
 
+#vista para borrar el avatar
 def borrar_avatar(request):
 
     usuario = request.user
@@ -97,6 +100,7 @@ def borrar_avatar(request):
 
     return redirect ("/")
 
+#Vista para agregar redes a un usuario en el primer login
 def agregar_redes(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -122,7 +126,8 @@ def agregar_redes(request):
         miFormulario = RedesSocialesFormulario()
     
     return render (request, "Applogin/agregar_redes.html", {"miFormulario": miFormulario})
-         
+
+#Vista para modificar las redes existentes en un usuario  
 def modificar_redes(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     redes = RedesSociales.objects.get(id=pk)
@@ -141,6 +146,7 @@ def modificar_redes(request, pk):
 
     return render (request, "Applogin/editar_redes.html", {"miFormulario":miFormulario, "pk":pk, "fotoAvatar": avatares[0].imagen.url})
 
+#Vista para borrar las redes existentes de un usuario
 def eliminar_redes( request, pk):
     
     try:
@@ -151,6 +157,7 @@ def eliminar_redes( request, pk):
     except Exception as exc:
         return redirect ("/App/profile")
 
+#vista para agregar redes despues de eliminarlas
 def crear_redes(request):
     
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -178,6 +185,7 @@ def crear_redes(request):
     
     return render (request, "Applogin/agregar_redes.html", {"miFormulario": miFormulario})
 
+#Vista para cambiar la password del usuario
 def cambiar_contrasenia(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
 

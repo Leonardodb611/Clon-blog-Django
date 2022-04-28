@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 
 def inicio(request):
     return render (request, "App/inicioConBlogs.html",)
-#fomulario para crear
 
+#fomulario para crear blog
 @login_required
 def crear_blog(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -36,6 +36,7 @@ def crear_blog(request):
     
     return render (request, "App/crear_blog.html", {"miFormulario": miFormulario ,"fotoAvatar": avatares[0].imagen.url})
 
+#Vista para generar un blog random en el incio del blog
 def random_blog(request):
 
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -62,6 +63,7 @@ def random_blog(request):
 
             return render(request, "App/inicio_sin_blogs.html")
 
+#vista para mensajes entre usuarios
 def mensaje(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     mensajes = Mensajes.objects.all()
@@ -89,7 +91,8 @@ def mensaje(request):
             return render (request, "App/mensaje.html", {"miFormulario":miFormulario, "mensajes":mensajes,"fotoAvatar": avatares[0].imagen.url})
 
     return  render(request, "App/mensaje.html", {"mensajes":mensajes,"fotoAvatar": avatares[0].imagen.url})
-        
+
+#vistas para listar todos los blogs    
 def leer_blogs(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     blogs = Blog.objects.all()
@@ -114,6 +117,7 @@ def leer_blogs(request):
 
             return render (request, "App/blogs.html", contexto) 
 
+#Vista para eliminar un blog
 @login_required
 def eliminar_blogs( request, pk):
     
@@ -125,6 +129,7 @@ def eliminar_blogs( request, pk):
     except Exception as exc:
         return redirect ("/")
 
+#Vista para modificar un blog
 @login_required
 def modificar_blogs(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -150,6 +155,7 @@ def modificar_blogs(request, pk):
 
     return render (request, "App/editar_blog.html", {"miFormulario":miFormulario, "pk":pk, "fotoAvatar": avatares[0].imagen.url})
 
+#Vista para leer un blog en especifico
 def blog_especifico(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     blogEspecifico = Blog.objects.get(id=pk)
@@ -162,12 +168,14 @@ def blog_especifico(request, pk):
         contexto = {"blogEspecifico":blogEspecifico}
         return render (request, "App/blog_especifico.html", contexto)
 
+#vista para los avatars
 def foto(request):
     
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
     return render(request, "App/padre.html", {"url":avatares[0].imagen.url} )
 
+#vista para editar el perfil de usuario
 def editar_perfil(request):
 
     usuario = request.user
@@ -194,6 +202,7 @@ def editar_perfil(request):
 
     return render(request, "App/editar_perfil.html", {"miFormulario":miFormulario, "usuario":usuario, "fotoAvatar":avatares[0].imagen.url})
 
+#vista para visualizar los datos del usuario
 def perfil_usuario(request):
 
 

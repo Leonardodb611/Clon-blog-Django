@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+#Vista para el registro del usuario
 def register(request):
     if request.method == "POST":
 
