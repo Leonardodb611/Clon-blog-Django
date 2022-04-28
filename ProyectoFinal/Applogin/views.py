@@ -13,7 +13,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
 
-# Create your views here.
 
 
 #Vista para logearse
@@ -56,8 +55,7 @@ def login_request (request):
 
     return render(request, "Applogin/login.html", {"form":form})
 
-
-#~Vista para agregar un avatar
+#Vista para agregar un avatar
 def agregar_avatar(request):
     
     

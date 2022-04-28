@@ -214,6 +214,7 @@ def perfil_usuario(request):
 
     return render (request, "App/perfil_usuario.html", contexto)
 
+#Vista para el sobre mi de la pagina
 def about(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     
