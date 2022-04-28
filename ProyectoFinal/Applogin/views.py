@@ -103,14 +103,14 @@ def agregar_redes(request):
     
     if request.method == "POST":
 
-        miFormulario1 = RedesSocialesFormulario(request.POST)
-        print(miFormulario1)
+        miFormulario = RedesSocialesFormulario(request.POST)
+        print(miFormulario)
 
         usuario = request.user
         user = request.user.username
         
-        if miFormulario1.is_valid():
-           informacion = miFormulario1.cleaned_data
+        if miFormulario.is_valid():
+           informacion = miFormulario.cleaned_data
            redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
            redes.save()
            avatar = Avatar(user=usuario, imagen="avatars/no-avatar.png")
@@ -119,9 +119,9 @@ def agregar_redes(request):
 
     else:
 
-        miFormulario1 = RedesSocialesFormulario()
+        miFormulario = RedesSocialesFormulario()
     
-    return render (request, "Applogin/agregar_redes.html", {"miFormulario1": miFormulario1})
+    return render (request, "Applogin/agregar_redes.html", {"miFormulario": miFormulario})
          
 def modificar_redes(request, pk):
     avatares = Avatar.objects.filter(user_id=request.user.username)
@@ -137,9 +137,9 @@ def modificar_redes(request, pk):
             return redirect ("/")
     else:
 
-        miFormulario = RedesSocialesFormulario(initial={"pagina":redes.pagina,"url": avatares[0].imagen.url})
+        miFormulario = RedesSocialesFormulario(initial={"pagina":redes.pagina,"fotoAvatar": avatares[0].imagen.url})
 
-    return render (request, "Applogin/editar_redes.html", {"miFormulario":miFormulario, "pk":pk, "url": avatares[0].imagen.url})
+    return render (request, "Applogin/editar_redes.html", {"miFormulario":miFormulario, "pk":pk, "fotoAvatar": avatares[0].imagen.url})
 
 def eliminar_redes( request, pk):
     
@@ -157,14 +157,14 @@ def crear_redes(request):
     
     if request.method == "POST":
 
-        miFormulario1 = RedesSocialesFormulario(request.POST)
-        print(miFormulario1)
+        miFormulario = RedesSocialesFormulario(request.POST)
+        print(miFormulario)
 
         usuario = request.user 
         
-        if miFormulario1.is_valid():
+        if miFormulario.is_valid():
             try:
-                informacion = miFormulario1.cleaned_data
+                informacion = miFormulario.cleaned_data
                 redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
                 redes.save()
             
@@ -174,11 +174,12 @@ def crear_redes(request):
                 return redirect("/App/profile")
     else:
 
-        miFormulario1 = RedesSocialesFormulario()
+        miFormulario = RedesSocialesFormulario()
     
-    return render (request, "Applogin/agregar_redes.html", {"miFormulario1": miFormulario1})
+    return render (request, "Applogin/agregar_redes.html", {"miFormulario": miFormulario})
 
 def cambiar_contrasenia(request):
+    avatares = Avatar.objects.filter(user_id=request.user.username)
 
     if request.method == "POST":
         
@@ -195,7 +196,7 @@ def cambiar_contrasenia(request):
     else:
         miFormulario = PasswordChangeForm(request.user)
 
-    return render (request, "Applogin/cambiar_pass.html", {"miFormulario":miFormulario})
+    return render (request, "Applogin/cambiar_pass.html", {"miFormulario":miFormulario, "fotoAvatar": avatares[0].imagen.url})
 
     
    

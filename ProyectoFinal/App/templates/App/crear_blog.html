@@ -14,7 +14,7 @@
 
 
 
-{% if miFormulario1.errors %}
+{% if miFormulario.errors %}
 
 <div class="alert alert-danger">
     <strong>ERROR!</strong> Los valores completados son incorrectos.
@@ -54,12 +54,12 @@
                                 <p><label class="form-label" for="typeEmailX">Contenido</label></p>
                                 <div class="form-outline form-white mb-4">
                                     
-                                    {{miFormulario1.contenido}}
+                                    {{miFormulario.contenido}}
                                     
                                 </div>
                                 <hr>
                                 <div class="form-outline form-white mb-4">
-                                    {{miFormulario1.foto}}
+                                    {{miFormulario.foto}}
                                     <label class="form-label" for="typeEmailX">Imagen</label>
                                 </div>
                 
