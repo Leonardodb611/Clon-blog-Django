@@ -27,9 +27,9 @@
                     
                         <div style="padding: 1%;">   
                                       
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Borrarblog' p.id%}">Borrar</a>      
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Editarblog' p.id%}">Editar</a>       
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>  
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'BorrarBlog' p.id%}">Borrar</a>      
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'EditarBlog' p.id%}">Editar</a>       
+                                <a class="btn btn-outline-secondary border-dark" href="{% url 'BlogEspecifico' p.id%}">Leer mas.</a>  
                                 <p></p>     
                         </div>      
                         
@@ -47,7 +47,7 @@
 
 {% if request.user.is_authenticated %}
 <div>
-    <p><a class="btn btn-outline-secondary border-dark" href="{% url 'Crear' %}">Crear blog</a></p>
+    <p><a class="btn btn-outline-secondary border-dark" href="{% url 'CrearBlog' %}">Crear blog</a></p>
     </div>    
     
 {% endif %}
