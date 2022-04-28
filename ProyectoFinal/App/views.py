@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 def inicio(request):
     return render (request, "App/inicioConBlogs.html",)
 #fomulario para crear
+
+@login_required
 def crear_blog(request):
     avatares = Avatar.objects.filter(user_id=request.user.username)
     if request.method == "POST":

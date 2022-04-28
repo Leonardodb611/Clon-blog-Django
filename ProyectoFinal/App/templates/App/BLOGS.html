@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h3 class="card-title">{{p.subtitulo}}</h3>
                     <p class="card-text">Creador por: {{p.creador}}</p>
-                    {% if request.user.is_authenticated %}
+                    
                         <div style="padding: 1%;">   
                                       
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Borrarblog' p.id%}">Borrar</a>      
@@ -32,12 +32,8 @@
                                 <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas.</a>  
                                 <p></p>     
                         </div>      
-                        {% else %}
-                        <div style="padding: 1%;">   
-                                <a class="btn btn-outline-secondary border-dark" href="{% url 'Blogespecifico' p.id%}">Leer mas</a> 
-                        </div>
-                        </li>
-                        {% endif %}
+                        
+                        
                 </div>
             </div>
         </div>
