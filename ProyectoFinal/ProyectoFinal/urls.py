@@ -27,12 +27,12 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path("", include("App.urls")),
-    path("App/", include("App.urls")),
+    path('', include("App.urls")),
     path("accounts/profile", perfil_usuario, name="Perfil"),
     path("accounts/logout", LogoutView.as_view(template_name="Applogin/gracias_logout.html"), name = "Logout"),
     path("accounts/login", login_request, name="Login"),
     path("accounts/register", register, name="Register"),
-    path("Applogin/", include("Applogin.urls")),
+    path("", include("Applogin.urls")),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
