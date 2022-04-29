@@ -48,7 +48,7 @@ def random_blog(request):
         if len(rblog) > 4:
             
             rblog = random.sample(rblog,5)
-            return render (request, "App/inicio_con_blogs.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "rfoto":rblog[0].foto.url, "fotoAvatar": avatares[0].imagen.url})
+            return render (request, "App/inicio_con_blogs.html", {"rblog": rblog[0], "rcreador":rblog[1], "rcontenido":rblog[2], "rcreacion":rblog[3], "rfoto":rblog[4].foto.url, "fotoAvatar": avatares[0].imagen.url})
         
         else:
             return render(request, "App/inicio_sin_blogs.html", {"fotoAvatar": avatares[0].imagen.url})
@@ -222,4 +222,5 @@ def about(request):
         return render (request, "App/about.html", {"fotoAvatar":avatares[0].imagen.url})
     else:
         return render (request, "App/about.html")
+
 

@@ -17,15 +17,22 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from App.urls import *
+from Applogin.urls import *
+from AppRegistro.views import *
+from Applogin.views import *
+from App.views import *
 
 urlpatterns = [
     
     path('admin/', admin.site.urls),
     path("", include("App.urls")),
     path("App/", include("App.urls")),
+    path("accounts/profile", perfil_usuario, name="Perfil"),
+    path("accounts/logout", LogoutView.as_view(template_name="Applogin/gracias_logout.html"), name = "Logout"),
+    path("accounts/login", login_request, name="Login"),
+    path("accounts/register", register, name="Register"),
     path("Applogin/", include("Applogin.urls")),
-    path("AppRegistro/", include("AppRegistro.urls"))
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
