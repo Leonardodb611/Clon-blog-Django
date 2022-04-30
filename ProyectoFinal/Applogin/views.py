@@ -117,7 +117,7 @@ def agregar_redes(request):
            redes.save()
            avatar = Avatar(user=usuario, imagen="avatars/no-avatar.png")
            avatar.save()
-           return redirect("/")
+           return redirect("/profile")
 
     else:
 
@@ -137,7 +137,7 @@ def modificar_redes(request, pk):
             informacion = miFormulario.cleaned_data
             redes.pagina = informacion["pagina"]
             redes.save()
-            return redirect ("/")
+            return redirect ("/profile")
     else:
 
         miFormulario = RedesSocialesFormulario(initial={"pagina":redes.pagina,"fotoAvatar": avatares[0].imagen.url})
@@ -151,9 +151,9 @@ def eliminar_redes( request, pk):
         redes = RedesSociales.objects.get(id=pk)
         redes.delete()
 
-        return redirect ("/App/profile")
+        return redirect ("/profile")
     except Exception as exc:
-        return redirect ("/App/profile")
+        return redirect ("/profile")
 
 #vista para agregar redes despues de eliminarlas
 def crear_redes(request):
@@ -173,10 +173,10 @@ def crear_redes(request):
                 redes = RedesSociales(user=usuario, pagina=informacion["pagina"])
                 redes.save()
             
-                return redirect("/App/profile")
+                return redirect("/profile")
             except:
                 
-                return redirect("/App/profile")
+                return redirect("/profile")
     else:
 
         miFormulario = RedesSocialesFormulario()
